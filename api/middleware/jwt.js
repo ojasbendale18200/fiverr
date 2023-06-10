@@ -1,15 +1,21 @@
-/* eslint-disable no-undef */
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, res, next) => {
-  const token = req.cookies.accessToken;
-  if (!token) return next(res.status(404).send("You are not authenticated!"))
+  let check =
+    req.headers?.authorization &&
+    req.headers?.authorization?.startsWith("Bearer");
+  if (check) {
+    let token = req.headers?.authorization?.split(" ")[1];
 
+    if (!token) return next(res.status(401).send("You are not authenticated!"));
+    jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
+      if (err) return next(res.status(403).send("Token is not valid!"));
 
-  jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
-    if (err) return next(res.status(403).send("Token is not valid!"))
-    req.userId = payload.id;
-    req.isSeller = payload.isSeller;
-    next()
-  });
+      req.userId = payload.id;
+      req.isSeller = payload.isSeller;
+      next();
+    });
+  } else {
+    res.status(401).send("You error!");
+  }
 };

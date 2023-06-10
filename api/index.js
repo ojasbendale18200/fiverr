@@ -13,23 +13,22 @@ import authRouter from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
-app.use(cors())
-
-
-
-
+app.use(cookieParser());
 
 const connect = async () => {
-    try {
-      await mongoose.connect(process.env.MONGOURL);
-      console.log("Connected to mongoDB!");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  try {
+    await mongoose.connect(process.env.MONGOURL);
+    console.log("Connected to mongoDB!");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-app.use(express.json())
-app.use(cookieParser());
+app.use(cors({ credentials: true }));
+app.use(express.json());
+
+
+
 app.use("/api/users",userRouter)
 app.use("/api/auth",authRouter)
 app.use("/api/gigs", gigRouter);
