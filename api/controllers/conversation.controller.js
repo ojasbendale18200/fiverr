@@ -1,7 +1,7 @@
 import Conversation from "../models/conversation.model.js";
 
 export const createConversation = async (req, res, next) => {
-  console.log(req.body);
+ 
   const newConversation = new Conversation({
     id: req.isSeller ? req.userId + req.body.to : req.body.to + req.userId,
     sellerId: req.isSeller ? req.userId : req.body.to,
