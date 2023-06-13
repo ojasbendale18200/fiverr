@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
 
   const { pathname } = useLocation();
 
@@ -14,15 +16,16 @@ function Navbar() {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:4000/api/auth/logout")
-      localStorage.setItem("currentUser",null)
-      navigate("/")
+      await axios.post("https://fair-blue-cod-cape.cyclic.app/api/auth/logout");
+      localStorage.setItem("currentUser", null);
+      removeCookie("accessToken");
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", isActive);
@@ -31,9 +34,7 @@ function Navbar() {
     };
   }, []);
 
-
-
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
@@ -50,37 +51,38 @@ function Navbar() {
           <span>English</span>
           {!currentUser?.isSeller && <span>Become a Seller</span>}
           {currentUser ? (
-            <div className="user" onClick={()=>setOpen(!open)}>
-              <img
-                src={currentUser.img || "/img/noavatar.jpg"}
-                alt=""
-              />
+            <div className="user" onClick={() => setOpen(!open)}>
+              <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
               <span>{currentUser?.username}</span>
-              {open && <div className="options">
-                {currentUser.isSeller && (
-                  <>
-                    <Link className="link" to="/mygigs">
-                      Gigs
-                    </Link>
-                    <Link className="link" to="/add">
-                      Add New Gig
-                    </Link>
-                  </>
-                )}
-                <Link className="link" to="/orders">
-                  Orders
-                </Link>
-                <Link className="link" to="/messages">
-                  Messages
-                </Link>
-                <Link className="link" to="/" onClick={handleLogout}>
-                  Logout
-                </Link>
-              </div>}
+              {open && (
+                <div className="options">
+                  {currentUser.isSeller && (
+                    <>
+                      <Link className="link" to="/mygigs">
+                        Gigs
+                      </Link>
+                      <Link className="link" to="/add">
+                        Add New Gig
+                      </Link>
+                    </>
+                  )}
+                  <Link className="link" to="/orders">
+                    Orders
+                  </Link>
+                  <Link className="link" to="/messages">
+                    Messages
+                  </Link>
+                  <Link className="link" to="/" onClick={handleLogout}>
+                    Logout
+                  </Link>
+                </div>
+              )}
             </div>
           ) : (
             <>
-             <Link className="link" to="/login"><span>Sign in</span></Link> 
+              <Link className="link" to="/login">
+                <span>Sign in</span>
+              </Link>
               <Link className="link" to="/register">
                 <button>Join</button>
               </Link>

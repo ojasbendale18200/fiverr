@@ -35,10 +35,13 @@ function Register() {
     const url = await upload(file);
     console.log(url)
     try {
-      await axios.post("http://localhost:4000/api/auth/register", {
-        ...user,
-        img: url,
-      });
+      await axios.post(
+        "https://fair-blue-cod-cape.cyclic.app/api/auth/register",
+        {
+          ...user,
+          img: url,
+        }
+      );
       navigate("/")
     } catch (err) {
       console.log(err);

@@ -3,10 +3,12 @@ import "./Login.scss";
 // import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie] = useCookies(["name"]);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -14,9 +16,14 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", { username, password });
+      const res = await axios.post(
+        "https://fair-blue-cod-cape.cyclic.app/api/auth/login",
+
+        { username, password }
+      );
       localStorage.setItem("currentUser", JSON.stringify(res.data));
-      navigate("/")
+      // setCookie("accessToken", res.data.token, { path: "/" });
+      navigate("/");
     } catch (err) {
       setError(err.response.data);
     }

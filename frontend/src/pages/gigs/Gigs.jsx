@@ -1,29 +1,46 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
-import { gigs } from "../../data";
 import GigCard from "../../components/gigCard/GigCard";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { useLocation } from "react-router-dom";
 
 function Gigs() {
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
   const minRef = useRef();
   const maxRef = useRef();
+  const { search } = useLocation();
+
+  const { isLoading, error, data, refetch } = useQuery("repoData", async () => {
+    try {
+      const response = await axios.get(
+        `https://fair-blue-cod-cape.cyclic.app/api/gigs?${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  });
+  console.log(data);
 
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
   };
+  useEffect(() => {
+    refetch();
+  }, [sort]);
 
-  const apply = ()=>{
-    console.log(minRef.current.value)
-    console.log(maxRef.current.value)
-  }
+  const apply = () => {
+    refetch();
+  };
 
   return (
     <div className="gigs">
       <div className="container">
         <span className="breadcrumbs">Liverr > Graphics & Design ></span>
-        <h1>AI Artists</h1>
+        <h1>Designs</h1>
         <p>
           Explore the boundaries of art and technology with Liverr's AI artists
         </p>
@@ -46,16 +63,18 @@ function Gigs() {
                   <span onClick={() => reSort("createdAt")}>Newest</span>
                 ) : (
                   <span onClick={() => reSort("sales")}>Best Selling</span>
-                  )}
-                  <span onClick={() => reSort("sales")}>Popular</span>
+                )}
+                <span onClick={() => reSort("sales")}>Popular</span>
               </div>
             )}
           </div>
         </div>
         <div className="cards">
-          {gigs.map((gig) => (
-            <GigCard key={gig.id} item={gig} />
-          ))}
+          {isLoading
+            ? "loading"
+            : error
+            ? "Something went wrong!"
+            : data?.map((gig) => <GigCard key={gig._id} item={gig} />)}
         </div>
       </div>
     </div>
