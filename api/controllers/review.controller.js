@@ -2,7 +2,6 @@ import Review from "../models/review.model.js";
 import Gig from "../models/gig.model.js";
 
 export const createReview = async (req, res) => {
-  console.log(req.desc);
   if (req.isSeller)
     return res.status(403).send("Sellers can't create a review!");
 
