@@ -27,6 +27,10 @@ const connect = async () => {
 app.use(cors({ credentials: true }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Fiverr Backend");
+});
+
 
 
 app.use("/api/users",userRouter)
