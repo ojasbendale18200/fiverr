@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import {
   Box,
   Flex,
-  Link,
   Button,
   Image,
   Text,
@@ -69,7 +68,7 @@ function Navbar() {
         flexDirection={{ base: "column", md: "row" }}
       >
         <Box>
-          <Link className="link" href="/">
+          <Link className="link" to="/">
             <Text
               as="span"
               fontSize="34px"
@@ -139,18 +138,18 @@ function Navbar() {
                 >
                   {currentUser.isSeller && (
                     <>
-                      <Link className="link" href="/mygigs">
+                      <Link className="link" to="/mygigs">
                         Gigs
                       </Link>
-                      <Link className="link" href="/add">
+                      <Link className="link" to="/add">
                         Add New Gig
                       </Link>
                     </>
                   )}
-                  <Link className="link" href="/orders">
+                  <Link className="link" to="/orders">
                     Orders
                   </Link>
-                  <Link className="link" href="/messages">
+                  <Link className="link" to="/messages">
                     Messages
                   </Link>
                   <Link className="link" to="/" onClick={handleLogout}>
@@ -161,10 +160,10 @@ function Navbar() {
             </Flex>
           ) : (
             <>
-              <Link className="link" href="/login">
+              <Link className="link" to="/login">
                 <Text as="span">Sign in</Text>
               </Link>
-              <Link className="link" href="/register">
+              <Link className="link" to="/register">
                 <Button>Join</Button>
               </Link>
             </>
