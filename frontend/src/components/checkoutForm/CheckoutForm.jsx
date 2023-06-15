@@ -5,6 +5,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { Button, Flex, Text, Spinner, Box, Heading } from "@chakra-ui/react";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -84,20 +85,59 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+    // <form id="payment-form" onSubmit={handleSubmit}>
+    //   <LinkAuthenticationElement
+    //     id="link-authentication-element"
+    //     onChange={(e) => setEmail(e.target.value)}
+    //   />
+    //   <PaymentElement id="payment-element" options={paymentElementOptions} />
+    //   <button disabled={isLoading || !stripe || !elements} id="submit">
+    //     <span id="button-text">
+    //       {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+    //     </span>
+    //   </button>
+    //   {/* Show any error or success messages */}
+    //   {message && <div id="payment-message">{message}</div>}
+    // </form>
+    <>
+      <Heading textAlign={"center"} mt={"50px"}>
+        Pay with Card
+      </Heading>
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <Box w={"20%"} margin={"auto"} mt={"130px"}>
+          <Flex flexDirection="column" gap="1rem">
+            <LinkAuthenticationElement
+              id="link-authentication-element"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <PaymentElement
+              id="payment-element"
+              options={paymentElementOptions}
+            />
+            <Button
+              disabled={isLoading || !stripe || !elements}
+              id="submit"
+              type="submit"
+              bg={"blue.500"}
+              color={"white"}
+              _hover={"none"}
+            >
+              <Flex alignItems="center" gap="0.5rem">
+                <Text id="button-text">
+                  {isLoading ? <Spinner id="spinner" /> : "Pay now"}
+                </Text>
+              </Flex>
+            </Button>
+            {/* Show any error or success messages */}
+            {message && (
+              <Text id="payment-message" color="red.500">
+                {message}
+              </Text>
+            )}
+          </Flex>
+        </Box>
+      </form>
+    </>
   );
 };
 

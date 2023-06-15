@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "./Gig.scss";
+// import "./Gig.scss";
 import { Slider } from "infinite-react-carousel/lib";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Reviews from "../../components/reviews/Reviews";
+import {
+  Box,
+  Flex,
+  Text,
+  Image,
+  Button,
+  Grid,
+  GridItem,
+  Divider,
+} from "@chakra-ui/react";
 
 function Gig() {
   const { id } = useParams();
@@ -36,131 +46,189 @@ function Gig() {
   });
 
   return (
-    <div className="gig">
+    <Box maxW="1400px" mx="auto" p="30px 0px">
       {isLoading ? (
         "loading"
       ) : error ? (
         "Something went wrong!"
       ) : (
-        <div className="container">
-          <div className="left">
-            <span className="breadcrumbs">
-              Liverr {">"} Graphics & Design {">"}
-            </span>
-            <h1>{data?.title}</h1>
+        <Grid templateColumns={["1fr", "1fr", "2fr 1fr"]} gap={8}>
+          <Box>
+            <Text
+              fontWeight="300"
+              textTransform="uppercase"
+              fontSize="13px"
+              color="#555"
+            >
+              Liverr &gt; Graphics &amp; Design &gt;
+            </Text>
+            <Text as="h1" fontSize="xl" fontWeight="bold">
+              {data?.title}
+            </Text>
             {isLoadingUser ? (
               "loading"
             ) : isError ? (
               "Something went wrong!"
             ) : (
-              <div className="user">
-                <img
-                  className="pp"
+              <Flex align="center" mt={2} mb={4}>
+                <Image
                   src={userData.img || "/img/noavatar.jpg"}
-                  alt=""
+                  alt="User Avatar"
+                  borderRadius="50%"
+                  boxSize="32px"
                 />
-                <span>{userData?.username}</span>
-                <div className="stars">
+                <Text fontSize="sm" fontWeight="500" ml={2}>
+                  {userData?.username}
+                </Text>
+                <Flex align="center" ml={2}>
                   {Array(Math.round(data?.totalStars))
                     .fill()
                     .map((item, i) => (
-                      <img src="/img/star.png" alt="" key={i} />
+                      <Image src="/img/star.png" alt="" key={i} w={"4"} />
                     ))}
-                  <span>{data?.totalStars}</span>
-                </div>
-              </div>
+                  <Text fontSize="sm" fontWeight="bold" color="#ffc108" ml={1}>
+                    {data?.totalStars}
+                  </Text>
+                </Flex>
+              </Flex>
             )}
             <Slider slidesToShow={1} arrowsScroll={1} className="slider">
               {data?.images?.map((img) => (
                 <img key={img} src={img} alt="" />
               ))}
             </Slider>
-            <h2>About This Gig</h2>
-            <p>{data?.desc}</p>
+            <Text as="h2" fontWeight="400" mt={4}>
+              About This Gig
+            </Text>
+            <Text fontWeight="300" lineHeight="1.5" color="#555">
+              {data?.desc}
+            </Text>
+            {/* Seller */}
             {isLoadingUser ? (
               "loading"
             ) : isError ? (
               "Something went wrong!"
             ) : (
-              <div className="seller">
-                <h2>About The Seller</h2>
-                <div className="user">
-                  <img src={userData.img || "/img/noavatar.jpg"} alt="" />
-                  <div className="info">
-                    <span>{userData?.username}</span>
-                    <div className="stars">
+              <Box>
+                <Text as="h2" fontWeight="400" mt={8}>
+                  About The Seller
+                </Text>
+                <Flex align="center" mt={4}>
+                  <Image
+                    src={userData.img || "/img/noavatar.jpg"}
+                    alt="User Avatar"
+                    borderRadius="50%"
+                    boxSize="100px"
+                  />
+                  <Box ml={4}>
+                    <Text fontSize="xl" fontWeight="bold">
+                      {userData?.username}
+                    </Text>
+                    <Flex align="center" mt={2}>
                       {Array(Math.round(data?.totalStars))
                         .fill()
                         .map((item, i) => (
-                          <img src="/img/star.png" alt="" key={i} />
+                          <Image src="/img/star.png" alt="" key={i} w={"4"} />
                         ))}
-
-                      <span>{data?.totalStars}</span>
-                    </div>
-                    <button>Contact Me</button>
-                  </div>
-                </div>
-                <div className="box">
-                  <div className="items">
-                    <div className="item">
-                      <span className="title">From</span>
-                      <span className="desc">{userData?.country}</span>
-                    </div>
-                    <div className="item">
-                      <span className="title">Member since</span>
-                      <span className="desc">Aug 2022</span>
-                    </div>
-                    <div className="item">
-                      <span className="title">Avg. response time</span>
-                      <span className="desc">4 hours</span>
-                    </div>
-                    <div className="item">
-                      <span className="title">Last delivery</span>
-                      <span className="desc">1 day</span>
-                    </div>
-                    <div className="item">
-                      <span className="title">Languages</span>
-                      <span className="desc">English</span>
-                    </div>
-                  </div>
-                  <hr />
-                  <p>{userData.desc}</p>
-                </div>
-              </div>
+                      <Text
+                        fontSize="sm"
+                        fontWeight="bold"
+                        color="#ffc108"
+                        ml={1}
+                      >
+                        {data?.totalStars}
+                      </Text>
+                    </Flex>
+                    <Button mt={4} variant="outline" borderRadius="5px">
+                      Contact Me
+                    </Button>
+                  </Box>
+                </Flex>
+                <Box
+                  mt={6}
+                  border={"1px solid lightgray"}
+                  borderRadius={"5px"}
+                  p="20px"
+                  marginTop={"20px"}
+                >
+                  <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                    <GridItem>
+                      <Text fontWeight="300">From</Text>
+                      <Text fontWeight="bold">{userData?.country}</Text>
+                    </GridItem>
+                    <GridItem>
+                      <Text fontWeight="300">Member since</Text>
+                      <Text fontWeight="bold">Aug 2022</Text>
+                    </GridItem>
+                    <GridItem>
+                      <Text fontWeight="300">Avg. response time</Text>
+                      <Text fontWeight="bold">4 hours</Text>
+                    </GridItem>
+                    <GridItem>
+                      <Text fontWeight="300">Last delivery</Text>
+                      <Text fontWeight="bold">1 day</Text>
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                      <Text fontWeight="300">Languages</Text>
+                      <Text fontWeight="bold">English</Text>
+                    </GridItem>
+                  </Grid>
+                  <Divider my={6} />
+                  <Text fontWeight="300">{userData.desc}</Text>
+                </Box>
+              </Box>
             )}
-            <Reviews gigId={id} />
-          </div>
-          <div className="right">
-            <div className="price">
-              <h3>{data?.shortTitle}</h3>
-              <h2>$ {data?.price}</h2>
-            </div>
-            <p>{data?.shortDesc}</p>
-            <div className="details">
-              <div className="item">
-                <img src="/img/clock.png" alt="" />
-                <span>{data?.deliveryDate} Days Delivery</span>
-              </div>
-              <div className="item">
-                <img src="/img/recycle.png" alt="" />
-                <span>{data?.revisionNumber} Revisions</span>
-              </div>
-            </div>
-            <div className="features">
-              {data?.features?.map((item) => (
-                <div className="item" key={item}>
-                  <img src="/img/greencheck.png" alt="" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-            <Link to={`/pay/${id}`}>
-              <button>Continue</button>
-            </Link>
-          </div>
-        </div>
+
+            <Box mt={6}>
+              <Reviews gigId={id} />
+            </Box>
+            <Divider my={6} />
+          </Box>
+          <Box>
+            <Box border="1px solid lightgray" borderRadius="5px" p={4}>
+              <Flex align="center" justify="space-between">
+                <Text fontWeight="500" fontSize="lg">
+                  {data?.shortTitle}
+                </Text>
+                <Text fontWeight="300" fontSize="2xl">
+                  $ {data?.price}
+                </Text>
+              </Flex>
+              <Text color="gray" mt={2}>
+                {data?.shortDesc}
+              </Text>
+              <Flex align="center" justify="space-between" fontSize="sm" mt={4}>
+                <Flex align="center">
+                  <Image src="/img/clock.png" alt="Clock" boxSize="20px" />
+                  <Text ml={2}>{data?.deliveryDate} Days Delivery</Text>
+                </Flex>
+                <Flex align="center">
+                  <Image src="/img/recycle.png" alt="Recycle" boxSize="20px" />
+                  <Text ml={2}>{data?.revisionNumber} Revisions</Text>
+                </Flex>
+              </Flex>
+              <Box mt={4}>
+                {data?.features?.map((item) => (
+                  <Flex align="center" mb={2} key={item}>
+                    <Image
+                      src="/img/greencheck.png"
+                      alt="Green Check"
+                      boxSize="14px"
+                    />
+                    <Text ml={2}>{item}</Text>
+                  </Flex>
+                ))}
+              </Box>
+              <Link to={`/pay/${id}`}>
+                <Button mt={6} colorScheme="teal" size="lg" borderRadius="5px">
+                  Continue
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+        </Grid>
       )}
-    </div>
+    </Box>
   );
 }
 

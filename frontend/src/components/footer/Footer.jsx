@@ -1,97 +1,127 @@
 import React from "react";
-import "./Footer.scss";
+
+import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 
 function Footer() {
   return (
-    <div className="footer">
-      <div className="container">
-        <div className="top">
-          <div className="item">
-            <h2>Categories</h2>
-            <span>Graphics & Design</span>
-            <span>Digital Marketing</span>
-            <span>Writing & Translation</span>
-            <span>Video & Animation</span>
-            <span>Music & Audio</span>
-            <span>Programming & Tech</span>
-            <span>Data</span>
-            <span>Business</span>
-            <span>Lifestyle</span>
-            <span>Photography</span>
-            <span>Sitemap</span>
-          </div>
-          <div className="item">
-            <h2>About</h2>
-            <span>Press & News</span>
-            <span>Partnerships</span>
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Intellectual Property Claims</span>
-            <span>Investor Relations</span>
-            <span>Contact Sales</span>
-          </div>
-          <div className="item">
-            <h2>Support</h2>
-            <span>Help & Support</span>
-            <span>Trust & Safety</span>
-            <span>Selling on Liverr</span>
-            <span>Buying on Liverr</span>
-          </div>
-          <div className="item">
-            <h2>Community</h2>
-            <span>Customer Success Stories</span>
-            <span>Community hub</span>
-            <span>Forum</span>
-            <span>Events</span>
-            <span>Blog</span>
-            <span>Influencers</span>
-            <span>Affiliates</span>
-            <span>Podcast</span>
-            <span>Invite a Friend</span>
-            <span>Become a Seller</span>
-            <span>Community Standards</span>
-          </div>
-          <div className="item">
-            <h2>More From Fiverr</h2>
-            <span>Liverr Business</span>
-            <span>Liverr Pro</span>
-            <span>Liverr Logo Maker</span>
-            <span>Liverr Guides</span>
-            <span>Get Inspired</span>
-            <span>Liverr Select</span>
-            <span>ClearVoice</span>
-            <span>Liverr Workspace</span>
-            <span>Learn</span>
-            <span>Working Not Working</span>
-          </div>
-        </div>
+    <Box
+      className="footer"
+      color="#666"
+      py={{ base: "50px", md: "0px" }}
+      mt={{ base: "50px", md: "0px" }}
+      textAlign="center"
+    >
+      <Box maxW={{ base: "100%", md: "1400px" }} mx="auto">
+        <Flex
+          className="top"
+          flexDirection={{ base: "column", md: "row" }}
+          justifyContent="space-between"
+          mb="50px"
+        >
+          <Box className="item" alignContent={"start"}>
+            <Heading fontSize="16px" color="#555" mb={"10px"}>
+              Categories
+            </Heading>
+
+            <Text fontWeight="300">Graphics & Design</Text>
+            <Text fontWeight="300">Digital Marketing</Text>
+            <Text fontWeight="300">Writing & Translation</Text>
+            <Text fontWeight="300">Video & Animation</Text>
+            <Text fontWeight="300">Music & Audio</Text>
+            <Text fontWeight="300">Programming & Tech</Text>
+            <Text fontWeight="300">Data</Text>
+            <Text fontWeight="300">Business</Text>
+            <Text fontWeight="300">Lifestyle</Text>
+            <Text fontWeight="300">Photography</Text>
+            <Text fontWeight="300">Sitemap</Text>
+          </Box>
+          <Box className="item">
+            <Heading fontSize="16px" color="#555" mb={"10px"}>
+              About
+            </Heading>
+            <Text fontWeight="300">Press & News</Text>
+            <Text fontWeight="300">Partnerships</Text>
+            <Text fontWeight="300">Privacy Policy</Text>
+            <Text fontWeight="300">Terms of Service</Text>
+            <Text fontWeight="300">Intellectual Property Claims</Text>
+            <Text fontWeight="300">Investor Relations</Text>
+            <Text fontWeight="300">Contact Sales</Text>
+          </Box>
+          <Box className="item">
+            <Heading fontSize="16px" color="#555" mb={"10px"}>
+              Support
+            </Heading>
+            <Text fontWeight="300">Help & Support</Text>
+            <Text fontWeight="300">Trust & Safety</Text>
+            <Text fontWeight="300">Selling on Liverr</Text>
+            <Text fontWeight="300">Buying on Liverr</Text>
+          </Box>
+          <Box className="item">
+            <Heading fontSize="16px" color="#555" mb={"10px"}>
+              Community
+            </Heading>
+            <Text fontWeight="300">Customer Success Stories</Text>
+            <Text fontWeight="300">Community hub</Text>
+            <Text fontWeight="300">Forum</Text>
+            <Text fontWeight="300">Events</Text>
+            <Text fontWeight="300">Blog</Text>
+            <Text fontWeight="300">Influencers</Text>
+            <Text fontWeight="300">Affiliates</Text>
+            <Text fontWeight="300">Podcast</Text>
+            <Text fontWeight="300">Invite a Friend</Text>
+            <Text fontWeight="300">Become a Seller</Text>
+            <Text fontWeight="300">Community Standards</Text>
+          </Box>
+          <Box className="item">
+            <Heading fontSize="16px" color="#555" mb={"10px"}>
+              More From Fiverr
+            </Heading>
+            <Text fontWeight="300">Liverr Business</Text>
+            <Text fontWeight="300">Liverr Pro</Text>
+            <Text fontWeight="300">Liverr Logo Maker</Text>
+            <Text fontWeight="300">Liverr Guides</Text>
+            <Text fontWeight="300">Get Inspired</Text>
+            <Text fontWeight="300">Liverr Select</Text>
+            <Text fontWeight="300">ClearVoice</Text>
+            <Text fontWeight="300">Liverr Workspace</Text>
+            <Text fontWeight="300">Learn</Text>
+            <Text fontWeight="300">Working Not Working</Text>
+          </Box>
+        </Flex>
         <hr />
-        <div className="bottom">
-          <div className="left">
-            <h2>liverr</h2>
-            <span>© Liverr International Ltd. 2023</span>
-          </div>
-          <div className="right">
-            <div className="social">
-              <img src="/img/twitter.png" alt="" />
-              <img src="/img/facebook.png" alt="" />
-              <img src="/img/linkedin.png" alt="" />
-              <img src="/img/pinterest.png" alt="" />
-              <img src="/img/instagram.png" alt="" />
-            </div>
-            <div className="link">
-              <img src="/img/language.png" alt="" />
-              <span>English</span>
-            </div>
-            <div className="link">
-              <img src="/img/coin.png" alt="" />
-              <span>USD</span>
-            </div>
-            <img src="/img/accessibility.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
+        <Flex
+          className="bottom"
+          alignItems="center"
+          justifyContent="space-between"
+          py={"30px"}
+        >
+          <Flex className="left" alignItems="center" gap="20px">
+            <Heading fontSize="16px">liverr</Heading>
+            <Text fontSize="13px" whiteSpace="nowrap">
+              © Liverr International Ltd. 2023
+            </Text>
+          </Flex>
+          <Flex className="right" alignItems="center" gap="30px">
+            <Flex className="social" gap="20px">
+              <Image src="/img/twitter.png" alt="" boxSize="24px" />
+              <Image src="/img/facebook.png" alt="" boxSize="24px" />
+              <Image src="/img/linkedin.png" alt="" boxSize="24px" />
+              <Image src="/img/pinterest.png" alt="" boxSize="24px" />
+              <Image src="/img/instagram.png" alt="" boxSize="24px" />
+            </Flex>
+            <Flex className="link" alignItems="center" gap="10px">
+              <Image src="/img/language.png" alt="" boxSize="24px" />
+              <Text>English</Text>
+            </Flex>
+            <Flex className="link" alignItems="center" gap="10px">
+              <Image src="/img/coin.png" alt="" boxSize="24px" />
+              <Text>USD</Text>
+            </Flex>
+            <Image src="/img/accessibility.png" alt="" boxSize="24px" />
+          </Flex>
+        </Flex>
+      </Box>
+    </Box>
   );
 }
 

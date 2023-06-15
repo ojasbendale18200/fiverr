@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import upload from "../../utils/upload";
-import "./Register.scss";
+// import "./Register.scss";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Switch,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 
 function Register() {
   const [file, setFile] = useState(null);
@@ -33,7 +43,6 @@ function Register() {
     e.preventDefault();
 
     const url = await upload(file);
-    console.log(url)
     try {
       await axios.post(
         "https://fair-blue-cod-cape.cyclic.app/api/auth/register",
@@ -42,71 +51,142 @@ function Register() {
           img: url,
         }
       );
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <div className="register">
+    <Box display="flex" alignItems="center" justifyContent="center">
       <form onSubmit={handleSubmit}>
-        <div className="left">
-          <h1>Create a new account</h1>
-          <label htmlFor="">Username</label>
-          <input
-            name="username"
-            type="text"
-            placeholder="johndoe"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="email"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Password</label>
-          <input name="password" type="password" onChange={handleChange} />
-          <label htmlFor="">Profile Picture</label>
-          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-          <label htmlFor="">Country</label>
-          <input
-            name="country"
-            type="text"
-            placeholder="Usa"
-            onChange={handleChange}
-          />
-          <button type="submit">Register</button>
-        </div>
-        <div className="right">
-          <h1>I want to become a seller</h1>
-          <div className="toggle">
-            <label htmlFor="">Activate the seller account</label>
-            <label className="switch">
-              <input type="checkbox" onChange={handleSeller} />
-              <span className="slider round"></span>
-            </label>
-          </div>
-          <label htmlFor="">Phone Number</label>
-          <input
-            name="phone"
-            type="text"
-            placeholder="+1 234 567 89"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Description</label>
-          <textarea
-            placeholder="A short description of yourself"
-            name="desc"
-            id=""
-            cols="30"
-            rows="10"
-            onChange={handleChange}
-          ></textarea>
-        </div>
+        <Box
+          width={{ base: "90%", md: "1160px" }}
+          padding="50px 40px"
+          display="flex"
+          flexDirection={{ base: "column", md: "row" }}
+          gap="130px"
+        >
+          <Box
+            flex="1"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            justifyContent="space-between"
+          >
+            <Text
+              color="black"
+              marginBottom="20px"
+              fontWeight={"600"}
+              fontSize={"xl"}
+            >
+              Create a new account
+            </Text>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Username
+              </FormLabel>
+              <Input
+                name="username"
+                type="text"
+                placeholder="johndoe"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Email
+              </FormLabel>
+              <Input
+                name="email"
+                type="email"
+                placeholder="email"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Password
+              </FormLabel>
+              <Input name="password" type="password" onChange={handleChange} />
+            </FormControl>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Profile Picture
+              </FormLabel>
+              <Input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            </FormControl>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Country
+              </FormLabel>
+              <Input
+                name="country"
+                type="text"
+                placeholder="Usa"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              bgColor={"#1dbf73"}
+              color={"white"}
+              _hover={{
+                backgroundColor: "green.600",
+                cursor: "pointer",
+              }}
+            >
+              Register
+            </Button>
+          </Box>
+          <Box
+            flex="1"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            justifyContent="space-between"
+          >
+            <Text
+              color="black"
+              marginBottom="20px"
+              fontWeight={"600"}
+              fontSize={"xl"}
+            >
+              I want to become a seller
+            </Text>
+            <Box display="flex" alignItems="center" gap="10px">
+              <FormLabel color="gray" fontSize="18px">
+                Activate the seller account
+              </FormLabel>
+              <Switch onChange={handleSeller} />
+            </Box>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Phone Number
+              </FormLabel>
+              <Input
+                name="phone"
+                type="text"
+                placeholder="+1 234 567 89"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel color="gray" fontSize="18px">
+                Description
+              </FormLabel>
+              <Textarea
+                placeholder="A short description of yourself"
+                name="desc"
+                id=""
+                cols="30"
+                rows="10"
+                onChange={handleChange}
+              />
+            </FormControl>
+          </Box>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 }
 

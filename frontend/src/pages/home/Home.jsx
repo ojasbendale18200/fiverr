@@ -6,8 +6,22 @@ import Slide from "../../components/slide/Slide";
 import CatCard from "../../components/catCard/CatCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import { cards, projects } from "../../data";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Image,
+  useBreakpointValue,
+  AspectRatio,
+  Container,
+  Grid,
+  GridItem,
+  Button,
+} from "@chakra-ui/react";
 
 function Home() {
+  const columnCount = useBreakpointValue({ base: 2, sm: 3, md: 5 });
   return (
     <div className="home">
       <Featured />
@@ -17,173 +31,481 @@ function Home() {
           <CatCard key={card.id} card={card} />
         ))}
       </Slide>
-      <div className="features">
-        <div className="container">
-          <div className="item">
-            <h1>A whole world of freelance talent at your fingertips</h1>
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              The best for every budget
-            </div>
-            <p>
-              Find high-quality services at every price point. No hourly rates,
-              just project-based pricing.
-            </p>
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Quality work done quickly
-            </div>
-            <p>
-              Find the right freelancer to begin working on your project within
-              minutes.
-            </p>
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Protected payments, every time
-            </div>
-            <p>
-              Always know what you'll pay upfront. Your payment isn't released
-              until you approve the work.
-            </p>
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              24/7 support
-            </div>
-            <p>
-              Find high-quality services at every price point. No hourly rates,
-              just project-based pricing.
-            </p>
-          </div>
-          <div className="item">
-            <video src="./img/video.mp4" controls />
-          </div>
-        </div>
-      </div>
-      <div className="explore">
-        <div className="container">
-          <h1>Explore the marketplace</h1>
-          <div className="items">
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Graphics & Design</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
-                alt=""
-              />
-              <div className="line"></div>
+      <Box bg={"#f1fdf7"} py={{ base: 6, lg: 10 }} color={"black"}>
+        <Flex
+          maxW={{ base: "100%", lg: "1400px" }}
+          mx="auto"
+          px={{ base: 4, lg: 0 }}
+          direction={{ base: "column", lg: "row" }}
+          alignItems="center"
+          justify="space-between"
+        >
+          <Box flex={{ base: "1", lg: "2" }} mr={{ base: 0, lg: 20 }}>
+            <Heading fontSize={{ base: "xl", lg: "2xl" }} mb={4}>
+              A whole world of freelance talent at your fingertips
+            </Heading>
+            <Box mb={6}>
+              <Flex align="center" mb={2}>
+                <Image src="./img/check.png" alt="" w="24px" h="24px" mr={2} />
+                <Text fontWeight="500">The best for every budget</Text>
+              </Flex>
+              <Text fontWeight="300">
+                Find high-quality services at every price point. No hourly
+                rates, just project-based pricing.
+              </Text>
+            </Box>
+            <Box mb={6}>
+              <Flex align="center" mb={2}>
+                <Image src="./img/check.png" alt="" w="24px" h="24px" mr={2} />
+                <Text fontWeight="500">Quality work done quickly</Text>
+              </Flex>
+              <Text fontWeight="300">
+                Find the right freelancer to begin working on your project
+                within minutes.
+              </Text>
+            </Box>
+            <Box mb={6}>
+              <Flex align="center" mb={2}>
+                <Image src="./img/check.png" alt="" w="24px" h="24px" mr={2} />
+                <Text fontWeight="500">Protected payments, every time</Text>
+              </Flex>
+              <Text fontWeight="300">
+                Always know what you'll pay upfront. Your payment isn't released
+                until you approve the work.
+              </Text>
+            </Box>
+            <Box mb={6}>
+              <Flex align="center" mb={2}>
+                <Image src="./img/check.png" alt="" w="24px" h="24px" mr={2} />
+                <Text fontWeight="500">24/7 support</Text>
+              </Flex>
+              <Text fontWeight="300">
+                Find high-quality services at every price point. No hourly
+                rates, just project-based pricing.
+              </Text>
+            </Box>
+          </Box>
+          <Box flex={{ base: "1", lg: "1" }}>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/rMGW4Sp33xw"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </Box>
+        </Flex>
+      </Box>
 
-              <span>Digital Marketing</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Writing & Translation</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Video & Animation</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Music & Audio</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Programming & Tech</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Business</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Lifestyle</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/data.718910f.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Data</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/photography.01cf943.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Photography</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="features dark">
-        <div className="container">
-          <div className="item">
-            <h1>
+      <Box alignContent={"start"} py={"100px"}>
+        <Heading color={"#555"} textAlign={"center"} pb={"30px"}>
+          Explore the marketplace
+        </Heading>
+        <Grid templateColumns={`repeat(${columnCount}, 1fr)`} gap={4}>
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/data.718910f.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+
+          <GridItem
+            className="item"
+            width="250px"
+            height="150px"
+            display="flex"
+            flexDirection="column"
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            cursor="pointer"
+            _hover={{
+              ".line": {
+                width: "80px",
+                backgroundColor: "#1dbf73",
+              },
+            }}
+          >
+            <Image
+              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/photography.01cf943.svg"
+              alt=""
+              width={"50px"}
+              height={"50px"}
+            />
+            <Box
+              width="50px"
+              height="2px"
+              backgroundColor="lightgray"
+              transition="all .3s ease"
+              className="line"
+            ></Box>
+            <Text fontWeight={"300"}>Graphics & Design</Text>
+          </GridItem>
+        </Grid>
+      </Box>
+
+      <Box bg="#0d084d" py={{ base: "50px", md: "100px" }} textAlign="center">
+        <Flex
+          className="container"
+          maxW={{ base: "100%", md: "1400px" }}
+          mx="auto"
+          flexDirection={{ base: "column", md: "row" }}
+          alignItems="center"
+          justifyContent="center"
+          gap={{ base: "50px", md: "200px" }}
+        >
+          <Box flex={{ base: "none", md: 2 }}>
+            <Heading color={"white"}>
               liverr <i>business</i>
-            </h1>
-            <h1>
+            </Heading>
+            <Heading color={"white"} mb="15px">
               A business solution designed for <i>teams</i>
-            </h1>
-            <p>
+            </Heading>
+            <Text color={"white"} mb="20px">
               Upgrade to a curated experience packed with tools and benefits,
               dedicated to businesses
-            </p>
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Connect to freelancers with proven business experience
-            </div>
-
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Get matched with the perfect talent by a customer success manager
-            </div>
-
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Manage teamwork and boost productivity with one powerful workspace
-            </div>
-            <button>Explore Liverr Business</button>
-          </div>
-          <div className="item">
-            <img
+            </Text>
+            <Flex flexDirection="column" gap="20px">
+              <Flex align="center">
+                <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
+                <Text color={"white"}>
+                  Connect to freelancers with proven business experience
+                </Text>
+              </Flex>
+              <Flex align="center">
+                <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
+                <Text color={"white"}>
+                  Get matched with the perfect talent by a customer success
+                  </Text>
+              </Flex>
+              <Flex align="center">
+                <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
+                <Text color={"white"}>
+                  Manage teamwork and boost productivity with one powerful
+                </Text>
+              </Flex>
+            </Flex>
+            <Button
+              bg={{ base: "#1dbf73", md: "transparent" }}
+              color={{ base: "white", md: "#1dbf73" }}
+              px="20px"
+              py="10px"
+              borderRadius="5px"
+              fontSize="16px"
+              cursor="pointer"
+              mt="20px"
+              borderWidth={{ base: "0px", md: "1px" }}
+              borderColor={{ base: "transparent", md: "#1dbf73" }}
+            >
+              Explore Liverr Business
+            </Button>
+          </Box>
+          <Box flex={{ base: "none", md: 3 }}>
+            <Image
               src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_2.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624768/business-desktop-870-x2.png"
               alt=""
+              w="100%"
             />
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Flex>
+      </Box>
       <Slide slidesToShow={4} arrowsScroll={4}>
         {projects.map((card) => (
           <ProjectCard key={card.id} card={card} />

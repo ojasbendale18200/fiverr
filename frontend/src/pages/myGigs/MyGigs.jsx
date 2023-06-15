@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./MyGigs.scss";
+
 import { useQuery } from "react-query";
 import axios from "axios";
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 
 function MyGigs() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -37,51 +50,66 @@ function MyGigs() {
   };
 
   return (
-    <div className="myGigs">
+    <Flex justifyContent="center" color="#555">
       {isLoading ? (
         "loading"
       ) : error ? (
         "error"
       ) : (
-        <div className="container">
-          <div className="title">
-            <h1>Gigs</h1>
+        <Box w="1400px" padding="50px 0px">
+          <Flex justifyContent="space-between">
+            <Text as="h1" fontSize="xl" fontWeight="bold">
+              Gigs
+            </Text>
             {currentUser.isSeller && (
               <Link to="/add">
-                <button>Add New Gig</button>
+                <Button colorScheme="teal">Add New Gig</Button>
               </Link>
             )}
-          </div>
-          <table>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Sales</th>
-              <th>Action</th>
-            </tr>
-            {data.map((gig) => (
-              <tr key={gig._id}>
-                <td>
-                  <img className="image" src={gig.cover} alt="" />
-                </td>
-                <td>{gig.title}</td>
-                <td>{gig.price}</td>
-                <td>{gig.sales}</td>
-                <td>
-                  <img
-                    className="delete"
-                    src="./img/delete.png"
-                    alt=""
-                    onClick={() => handleDelete(gig._id)}
-                  />
-                </td>
-              </tr>
-            ))}
-          </table>
-        </div>
+          </Flex>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Image</Th>
+                <Th>Title</Th>
+                <Th>Price</Th>
+                <Th>Sales</Th>
+                <Th>Action</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {data.map((gig) => (
+                <Tr key={gig._id}>
+                  <Td>
+                    <Image
+                      className="image"
+                      src={gig.cover}
+                      alt=""
+                      w={"50px"}
+                      h={"25px"}
+                      objectFit={"cover"}
+                    />
+                  </Td>
+                  <Td>{gig.title}</Td>
+                  <Td>{gig.price}</Td>
+                  <Td>{gig.sales}</Td>
+                  <Td>
+                    <Image
+                      className="delete"
+                      src="./img/delete.png"
+                      alt=""
+                      w={"20px"}
+                      cursor={"pointer"}
+                      onClick={() => handleDelete(gig._id)}
+                    />
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </Box>
       )}
-    </div>
+    </Flex>
   );
 }
 

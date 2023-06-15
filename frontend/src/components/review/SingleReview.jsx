@@ -1,7 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
-import "./Review.scss";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
+// import "./Review.scss";
 
 const SingleReview = ({ review }) => {
   const { isLoading, error, data } = useQuery(`${review.userId}`, async () => {
@@ -16,39 +17,61 @@ const SingleReview = ({ review }) => {
   });
 
   return (
-    <div className="review">
+  
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap="20px"
+      margin="20px 0px"
+      className="review"
+    >
       {isLoading ? (
         "loading"
       ) : error ? (
         "error"
       ) : (
-        <div className="user">
-          <img className="pp" src={data.img || "/img/noavatar.jpg"} alt="" />
-          <div className="info">
-            <span>{data.username}</span>
-            <div className="country">
-              <span>{data.country}</span>
-            </div>
-          </div>
-        </div>
+        <Flex alignItems="center" className="user">
+          <Image
+            className="pp"
+            src={data.img || "/img/noavatar.jpg"}
+            alt=""
+            height="50px"
+            width="50px"
+            borderRadius="50%"
+          />
+          <Flex flexDirection="column" pl={"10px"} className="info">
+            <Text fontWeight={600}>{data.username}</Text>
+            <Flex alignItems="center" gap="10px" className="country">
+              <Text color="gray">{data.country}</Text>
+            </Flex>
+          </Flex>
+        </Flex>
       )}
-      <div className="stars">
+      <Flex gap="5px" className="stars">
         {Array(review.star)
           .fill()
           .map((item, i) => (
-            <img src="/img/star.png" alt="" key={i} />
+            <Image
+              src="/img/star.png"
+              alt=""
+              key={i}
+              height="14px"
+              width="14px"
+            />
           ))}
-        <span>{review.star}</span>
-      </div>
-      <p>{review.desc}</p>
-      <div className="helpful">
-        <span>Helpful?</span>
-        <img src="/img/like.png" alt="" />
-        <span>Yes</span>
-        <img src="/img/dislike.png" alt="" />
-        <span>No</span>
-      </div>
-    </div>
+        <Text fontSize="14px" fontWeight="bold" color="#ffc108">
+          {review.star}
+        </Text>
+      </Flex>
+      <Text>{review.desc}</Text>
+      <Flex alignItems="center" gap="10px" className="helpful">
+        <Text>Helpful?</Text>
+        <Image src="/img/like.png" alt="" width="14px" />
+        <Text>Yes</Text>
+        <Image src="/img/dislike.png" alt="" width="14px" />
+        <Text>No</Text>
+      </Flex>
+    </Box>
   );
 };
 

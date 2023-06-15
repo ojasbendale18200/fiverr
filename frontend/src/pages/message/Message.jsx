@@ -1,6 +1,16 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import "./Message.scss";
+import {
+  Box,
+  Text,
+  Image,
+  VStack,
+  HStack,
+  Divider,
+  Textarea,
+  Button,
+} from "@chakra-ui/react";
+// import "./Message.scss";
 import { useQuery } from "react-query";
 import axios from "axios";
 
@@ -41,45 +51,122 @@ const Message = () => {
           },
         }
       );
-      console.log(res);
+
       refetch();
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="message">
-      <div className="container">
-        <span className="breadcrumbs">
-          <Link to="/messages">Messages</Link> > John Doe >
-        </span>
+    <Box className="message" display="flex" justifyContent="center">
+      <Box
+        className="container"
+        width={["100%", "100%", "1200px"]}
+        margin="50px"
+      >
+        <Text
+          className="breadcrumbs"
+          fontWeight="300"
+          fontSize="13px"
+          color="#555"
+        >
+          <Link to="/messages">Messages</Link> > {currentUser.username} &gt;
+        </Text>
         {isLoading ? (
           "loading"
         ) : error ? (
           "error"
         ) : (
-          <div className="messages">
+          <VStack
+            className="messages"
+            margin="30px 0"
+            padding="50px"
+            spacing="20px"
+            height="500px"
+            overflow="scroll"
+          >
             {data.map((m) => (
-              <div
-                className={m.userId === currentUser._id ? "owner item" : "item"}
+              <HStack
                 key={m._id}
+                maxW="600px"
+                fontSize="18px"
+                alignSelf={
+                  m.userId === currentUser._id ? "flex-end" : "flex-start"
+                }
+                flexDirection={
+                  m.userId === currentUser._id ? "row-reverse" : "row"
+                }
               >
-                <img
+                <Image
                   src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt=""
+                  boxSize="40px"
+                  borderRadius="50%"
+                  objectFit="cover"
                 />
-                <p>{m.desc}</p>
-              </div>
+                <Text
+                  maxWidth="500px"
+                  p="20px"
+                  bg={
+                    m.userId === currentUser._id
+                      ? "royalblue"
+                      : "rgb(244, 241, 241)"
+                  }
+                  color={m.userId === currentUser._id ? "white" : "gray"}
+                  borderRadius={
+                    m.userId === currentUser._id
+                      ? "20px 0px 20px 20px"
+                      : "0px 20px 20px 20px"
+                  }
+                  fontWeight="300"
+                >
+                  {m.desc}
+                </Text>
+              </HStack>
             ))}
-          </div>
+          </VStack>
         )}
-        <hr />
-        <form className="write" onSubmit={handleSubmit}>
-          <textarea type="text" placeholder="write a message" />
-          <button type="submit">Send</button>
-        </form>
-      </div>
-    </div>
+        <Divider
+          height="0.5px"
+          borderColor="rgb(232, 230, 230)"
+          marginBottom="20px"
+        />
+        <Box
+          as="form"
+          className="write"
+          onSubmit={handleSubmit}
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Textarea
+            type="text"
+            placeholder="write a message"
+            width="80%"
+            height="100px"
+            padding="10px"
+            border="1px solid lightgray"
+            borderRadius="10px"
+          />
+          <Button
+            type="submit"
+            backgroundColor="#1dbf73"
+            padding="20px"
+            color="white"
+            fontWeight="500"
+            mr={{ md: "120px" }}
+            ml={{ base: "20px" }}
+            border="none"
+            borderRadius="10px"
+            cursor="pointer"
+            width="100px"
+            _hover={{ backgroundColor: "green.700" }}
+          >
+            Send
+          </Button>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
