@@ -27,35 +27,7 @@ const GigCard = ({ item }) => {
 
   return (
     <Link to={`/gig/${item._id}`} className="link">
-      {/* <div className="gigCard">
-        <img src={item?.cover} alt="" />
-        <div className="info">
-          {isLoading ? (
-            "loading"
-          ) : error ? (
-            "Something went wrong!"
-          ) : (
-            <div className="user">
-              <img src={data?.img || "/img/noavatar.jpg"} alt="" />
-              <span>{data?.username}</span>
-            </div>
-          )}
-          <h3>{item.title}</h3>
-          <p>{item?.desc}</p>
-          <div className="star">
-            <img src="./img/star.png" alt="" />
-            <span>{item?.totalStars}</span>
-          </div>
-        </div>
-        <hr />
-        <div className="detail">
-          <img src="./img/heart.png" alt="" />
-          <div className="price">
-            <span>STARTING AT</span>
-            <h2>$ {item?.price}</h2>
-          </div>
-        </div>
-      </div> */}
+   
       <Box
         width="335px"
         height="550px"

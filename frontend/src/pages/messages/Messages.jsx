@@ -79,56 +79,7 @@ const Messages = () => {
   }, [currentUser.isSeller, data]);
   console.log(userInfos);
   return (
-    // <div className="messages">
-    //   {isLoading ? (
-    //     "loading"
-    //   ) : error ? (
-    //     "error"
-    //   ) : (
-    //     <div className="container">
-    //       <div className="title">
-    //         <h1>Messages</h1>
-    //       </div>
-    //       <table>
-    //         <tr>
-    //           <th>{currentUser.isSeller ? "Buyer" : "Seller"}</th>
-    //           <th>Last Message</th>
-    //           <th>Date</th>
-    //           <th>Action</th>
-    //         </tr>
-    //         {userInfos.map((c) => (
-    //           <tr
-    //             className={
-    //               ((currentUser.isSeller && !c.readBySeller) ||
-    //                 (!currentUser.isSeller && !c.readByBuyer)) &&
-    //               "active"
-    //             }
-    //             key={c.id}
-    //           >
-    //             <td>
-    //               {c.userInfo.username.charAt(0).toLocaleUpperCase() +
-    //                 c.userInfo.username.slice(1).toLocaleLowerCase()}
-    //             </td>
-    //             <td>
-    //               <Link to={`/message/${c.id}`} className="link">
-    //                 {c?.lastMessage?.substring(0, 100)}...
-    //               </Link>
-    //             </td>
-    //             <td>{moment(c.updatedAt).fromNow()}</td>
-    //             <td>
-    //               {((currentUser.isSeller && !c.readBySeller) ||
-    //                 (!currentUser.isSeller && !c.readByBuyer)) && (
-    //                 <button onClick={() => handleRead(c.id)}>
-    //                   Mark as Read
-    //                 </button>
-    //               )}
-    //             </td>
-    //           </tr>
-    //         ))}
-    //       </table>
-    //     </div>
-    //   )}
-    // </div>
+
     <Box className="messages" display="flex" justifyContent="center">
       {isLoading ? (
         "loading"
