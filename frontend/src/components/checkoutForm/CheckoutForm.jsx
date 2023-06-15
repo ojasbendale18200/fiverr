@@ -61,7 +61,7 @@ const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "https://fiverr-1cfm.vercel.app/",
+        return_url: "https://fiverr-1cfm.vercel.app/success/",
       },
     });
 
