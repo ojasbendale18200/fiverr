@@ -1,8 +1,10 @@
 import React from "react";
-import "./Home.scss";
+// import "./Home.scss";
 import Featured from "../../components/featured/Featured";
 import TrustedBy from "../../components/trustedBy/TrustedBy";
-import Slide from "../../components/slide/Slide";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import CatCard from "../../components/catCard/CatCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import { cards, projects } from "../../data";
@@ -26,12 +28,24 @@ function Home() {
     <div className="home">
       <Featured />
       <TrustedBy />
-      <Slide slidesToShow={5} arrowsScroll={5}>
+      <Slider
+        slidesToShow={5}
+        slidesToScroll={1}
+        dots={true}
+        responsive={[
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ]}
+      >
         {cards.map((card) => (
           <CatCard key={card.id} card={card} />
         ))}
-      </Slide>
-      <Box bg={"#f1fdf7"} py={{ base: 6, lg: 10 }} color={"black"}>
+      </Slider>
+      <Box bg={"#f1fdf7"} py={{ base: 6, lg: 10 }} mt={"40px"} color={"black"}>
         <Flex
           maxW={{ base: "100%", lg: "1400px" }}
           mx="auto"
@@ -473,7 +487,7 @@ function Home() {
                 <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
                 <Text color={"white"}>
                   Get matched with the perfect talent by a customer success
-                  </Text>
+                </Text>
               </Flex>
               <Flex align="center">
                 <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
@@ -506,11 +520,25 @@ function Home() {
           </Box>
         </Flex>
       </Box>
-      <Slide slidesToShow={4} arrowsScroll={4}>
-        {projects.map((card) => (
-          <ProjectCard key={card.id} card={card} />
-        ))}
-      </Slide>
+      <Box py={"40px"}>
+        <Slider
+          slidesToShow={5}
+          slidesToScroll={1}
+          dots={true}
+          responsive={[
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+              },
+            },
+          ]}
+        >
+          {projects.map((card) => (
+            <ProjectCard key={card.id} card={card} />
+          ))}
+        </Slider>
+      </Box>
     </div>
   );
 }

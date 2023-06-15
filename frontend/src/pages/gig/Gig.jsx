@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import "./Gig.scss";
-import { Slider } from "infinite-react-carousel/lib";
+
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import Reviews from "../../components/reviews/Reviews";
 import {
@@ -92,11 +95,44 @@ function Gig() {
                 </Flex>
               </Flex>
             )}
-            <Slider slidesToShow={1} arrowsScroll={1} className="slider">
-              {data?.images?.map((img) => (
-                <img key={img} src={img} alt="" />
-              ))}
-            </Slider>
+            <Box
+              w={{ base: "500px", md: "900px" }}
+              bgColor={"#F5F5F5"}
+              my={"40px"}
+            >
+              <Slider
+                slidesToShow={1}
+                slidesToScroll={1}
+                dots={true}
+                className="slider"
+                responsive={[
+                  {
+                    breakpoint: 768,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                    },
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                    },
+                  },
+                ]}
+              >
+                {data?.images?.map((img) => (
+                  <Image
+                    key={img}
+                    src={img}
+                    alt=""
+                    maxH={{ base: "250px", md: "500px" }}
+                    objectFit="contain"
+                  />
+                ))}
+              </Slider>
+            </Box>
             <Text as="h2" fontWeight="400" mt={4}>
               About This Gig
             </Text>
