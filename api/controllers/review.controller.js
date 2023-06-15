@@ -28,7 +28,7 @@ export const createReview = async (req, res) => {
     const savedReview = await newReview.save();
 
     await Gig.findByIdAndUpdate(req.body.gigId, {
-      $inc: { totalStars: req.body.star, starNumber: 1 },
+      $inc: { totalStars: req.body.star },
     });
     res.status(201).send(savedReview);
   } catch (err) {
