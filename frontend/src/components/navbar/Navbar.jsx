@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// import "./Navbar.scss";
+
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import {
