@@ -5,7 +5,7 @@ import { Link, Box, Text, Image } from "@chakra-ui/react";
 
 function CatCard({ card }) {
   return (
-    <RouterLink to="/gigs?cat=design">
+    <RouterLink to="/gigs">
       <Box
         className="catCard"
         width={{ base: "100%", md: "252px" }}

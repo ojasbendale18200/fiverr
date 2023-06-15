@@ -1,5 +1,5 @@
 import "./app.scss";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import React from "react";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -20,76 +20,83 @@ import Success from "./pages/success/Success";
 const queryClient = new QueryClient();
 
 function App() {
-  const Layout = () => {
-    return (
-      <div className="app">
-        <QueryClientProvider client={queryClient}>
-          <Navbar />
-          <Outlet />
-          <Footer />
-        </QueryClientProvider>
-      </div>
-    );
-  };
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: <Layout />,
+  //     children: [
+  //       {
+  //         path: "/",
+  //         element: <Home />,
+  //       },
+  //       {
+  //         path: "/gigs",
+  //         element: <Gigs />,
+  //       },
+  //       {
+  //         path: "/myGigs",
+  //         element: <MyGigs />,
+  //       },
+  //       {
+  //         path: "/orders",
+  //         element: <Orders />,
+  //       },
+  //       {
+  //         path: "/messages",
+  //         element: <Messages />,
+  //       },
+  //       {
+  //         path: "/message/:id",
+  //         element: <Message />,
+  //       },
+  //       {
+  //         path: "/add",
+  //         element: <Add />,
+  //       },
+  //       {
+  //         path: "/gig/:id",
+  //         element: <Gig />,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     path: "/register",
+  //     element: <Register />,
+  //   },
+  //   {
+  //     path: "/login",
+  //     element: <Login />,
+  //   },
+  //   {
+  //     path: "/pay/:id",
+  //     element: <Pay />,
+  //   },
+  //   {
+  //     path: "/success",
+  //     element: <Success />,
+  //   },
+  // ]);
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/gigs",
-          element: <Gigs />,
-        },
-        {
-          path: "/myGigs",
-          element: <MyGigs />,
-        },
-        {
-          path: "/orders",
-          element: <Orders />,
-        },
-        {
-          path: "/messages",
-          element: <Messages />,
-        },
-        {
-          path: "/message/:id",
-          element: <Message />,
-        },
-        {
-          path: "/add",
-          element: <Add />,
-        },
-        {
-          path: "/gig/:id",
-          element: <Gig />,
-        },
-      ],
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/pay/:id",
-      element: <Pay />,
-    },
-    {
-      path: "/success",
-      element: <Success />,
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/gigs" element={<Gigs />} />
+        <Route path="/myGigs" element={<MyGigs />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/message/:id" element={<Message />} />
+        <Route path="/add" element={<Add />} />
+        <Route path="/gig/:id" element={<Gig />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/pay/:id" element={<Pay />} />
+        <Route path="/success" element={<Success />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
