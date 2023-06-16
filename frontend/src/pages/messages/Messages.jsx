@@ -12,32 +12,33 @@ import {
   Th,
   Td,
 } from "@chakra-ui/react";
-import { useQuery } from "react-query";
 import axios from "axios";
 import moment from "moment";
 
 const Messages = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [userInfos, setUserInfos] = useState([]);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const { isLoading, error, data, refetch } = useQuery(
-    `conversations`,
-    async () => {
-      try {
-        const response = await axios.get(
-          `https://fair-blue-cod-cape.cyclic.app/api/conversations`,
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser.token}`,
-            },
-          }
-        );
-        return response.data;
-      } catch (error) {
-        throw new Error(error.message);
-      }
+  const getAllMessages = async () => {
+    try {
+      const response = await axios.get(
+        `https://fair-blue-cod-cape.cyclic.app/api/conversations`,
+        {
+          headers: {
+            Authorization: `Bearer ${currentUser.token}`,
+          },
+        }
+      );
+      setData(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setError(true);
+      throw new Error(error.message);
     }
-  );
+  };
 
   const handleRead = async (id) => {
     try {
@@ -51,11 +52,15 @@ const Messages = () => {
         }
       );
 
-      refetch();
+      getAllMessages();
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getAllMessages();
+  }, []);
 
   useEffect(() => {
     const fetchUserInfos = async () => {
@@ -77,9 +82,8 @@ const Messages = () => {
 
     fetchUserInfos();
   }, [currentUser.isSeller, data]);
-  console.log(userInfos);
-  return (
 
+  return (
     <Box className="messages" display="flex" justifyContent="center">
       {isLoading ? (
         "loading"

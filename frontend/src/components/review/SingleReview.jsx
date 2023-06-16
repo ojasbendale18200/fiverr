@@ -1,23 +1,31 @@
 import axios from "axios";
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useEffect, useState } from "react";
+
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 // import "./Review.scss";
 
 const SingleReview = ({ review }) => {
-  const { isLoading, error, data } = useQuery(`${review.userId}`, async () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState([]);
+  const getSingleReview = async () => {
     try {
       const response = await axios.get(
         `https://fair-blue-cod-cape.cyclic.app/api/users/${review.userId}`
       );
-      return response.data;
+      setData(response.data);
+      setIsLoading(false);
     } catch (error) {
+      setError(true);
       throw new Error(error.message);
     }
-  });
+  };
+
+  useEffect(() => {
+    getSingleReview();
+  }, []);
 
   return (
-  
     <Box
       display="flex"
       flexDirection="column"

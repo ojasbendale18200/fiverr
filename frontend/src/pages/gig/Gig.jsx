@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import "./Gig.scss";
 
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,38 +21,65 @@ import {
 
 function Gig() {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [Error, setError] = useState(false);
+  const [data, setData] = useState(null);
+  const [userData, setUserData] = useState(null);
 
-  const { isLoading, error, data } = useQuery(`gig`, async () => {
-    try {
-      const response = await axios.get(
-        `https://fair-blue-cod-cape.cyclic.app/api/gigs/single/${id}`
-      );
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  });
+  // const getSingleGig = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.get(
+  //       `https://fair-blue-cod-cape.cyclic.app/api/gigs/single/${id}`
+  //     );
+  //     setData(response.data);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     setError(true);
+  //     throw new Error(error.message);
+  //   }
+  // };
 
-  const {
-    isLoading: isLoadingUser,
-    error: isError,
-    data: userData,
-  } = useQuery(`user`, async () => {
-    try {
-      const response = await axios.get(
-        `https://fair-blue-cod-cape.cyclic.app/api/users/${data.userId}`
-      );
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  });
+  // const getUsers = async () => {
+  //   setIsLoadingUser(true);
+  //   try {
+  //     const response = await axios.get(
+  //       `https://fair-blue-cod-cape.cyclic.app/api/users/${data.userId}`
+  //     );
+  //     setUserData(response.data);
+  //     setIsLoadingUser(false);
+  //   } catch (error) {
+  //     setIsError(true);
+  //     throw new Error(error.message);
+  //   }
+  // };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://fair-blue-cod-cape.cyclic.app/api/gigs/single/${id}`
+        );
+        setData(response.data);
+        const userId = response.data.userId; // Extracting userId from the response
+        const userResponse = await axios.get(
+          `https://fair-blue-cod-cape.cyclic.app/api/users/${userId}`
+        );
+        setUserData(userResponse.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(true);
+        throw new Error(error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Box maxW="1400px" mx="auto" p="30px 0px">
       {isLoading ? (
         "loading"
-      ) : error ? (
+      ) : Error ? (
         "Something went wrong!"
       ) : (
         <Grid templateColumns={["1fr", "1fr", "2fr 1fr"]} gap={8}>
@@ -68,14 +95,14 @@ function Gig() {
             <Text as="h1" fontSize="xl" fontWeight="bold">
               {data?.title}
             </Text>
-            {isLoadingUser ? (
+            {isLoading ? (
               "loading"
-            ) : isError ? (
+            ) : Error ? (
               "Something went wrong!"
             ) : (
               <Flex align="center" mt={2} mb={4}>
                 <Image
-                  src={userData.img || "/img/noavatar.jpg"}
+                  src={userData?.img || "/img/noavatar.jpg"}
                   alt="User Avatar"
                   borderRadius="50%"
                   boxSize="32px"
@@ -140,9 +167,9 @@ function Gig() {
               {data?.desc}
             </Text>
             {/* Seller */}
-            {isLoadingUser ? (
+            {isLoading ? (
               "loading"
-            ) : isError ? (
+            ) : Error ? (
               "Something went wrong!"
             ) : (
               <Box>
@@ -236,7 +263,7 @@ function Gig() {
               <Flex align="center" justify="space-between" fontSize="sm" mt={4}>
                 <Flex align="center">
                   <Image src="/img/clock.png" alt="Clock" boxSize="20px" />
-                  <Text ml={2}>{data?.deliveryDate} Days Delivery</Text>
+                  <Text ml={2}>{data?.deliveryTime} Days Delivery</Text>
                 </Flex>
                 <Flex align="center">
                   <Image src="/img/recycle.png" alt="Recycle" boxSize="20px" />

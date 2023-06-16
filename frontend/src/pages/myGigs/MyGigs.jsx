@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useQuery } from "react-query";
 import axios from "axios";
 import {
   Box,
@@ -19,8 +18,11 @@ import {
 
 function MyGigs() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState([]);
 
-  const { isLoading, error, data, refetch } = useQuery(`myGigs`, async () => {
+  const getMyGigs = async () => {
     try {
       const response = await axios.get(
         `https://fair-blue-cod-cape.cyclic.app/api/gigs?userId=${currentUser._id}`,
@@ -30,12 +32,14 @@ function MyGigs() {
           },
         }
       );
-      console.log(response);
-      return response.data;
+
+      setData(response.data);
+      setIsLoading(false);
     } catch (error) {
+      setError(true);
       throw new Error(error.message);
     }
-  });
+  };
 
   const handleDelete = async (id) => {
     let res = await axios.delete(
@@ -46,8 +50,12 @@ function MyGigs() {
         },
       }
     );
-    refetch();
+    getMyGigs();
   };
+
+  useEffect(() => {
+    getMyGigs();
+  }, []);
 
   return (
     <Flex justifyContent="center" color="#555">

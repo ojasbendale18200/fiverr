@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   Box,
@@ -11,14 +11,17 @@ import {
   Button,
 } from "@chakra-ui/react";
 // import "./Message.scss";
-import { useQuery } from "react-query";
+
 import axios from "axios";
 
 const Message = () => {
   const { id } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const { isLoading, error, data, refetch } = useQuery(`messages`, async () => {
+  const getMessages = async () => {
     try {
       const response = await axios.get(
         `https://fair-blue-cod-cape.cyclic.app/api/messages/${id}`,
@@ -28,11 +31,13 @@ const Message = () => {
           },
         }
       );
-      return response.data;
+      setData(response.data);
+      setIsLoading(false);
     } catch (error) {
+      setError(true);
       throw new Error(error.message);
     }
-  });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,11 +57,15 @@ const Message = () => {
         }
       );
 
-      refetch();
+      getMessages();
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getMessages();
+  }, []);
   return (
     <Box className="message" display="flex" justifyContent="center">
       <Box

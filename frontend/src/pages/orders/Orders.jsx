@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -11,15 +11,19 @@ import {
   Th,
   Thead,
   Tr,
+  useStatStyles,
 } from "@chakra-ui/react";
-import { useQuery } from "react-query";
+
 import axios from "axios";
 
 const Orders = () => {
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const { isLoading, error, data } = useQuery(`orders`, async () => {
+  const getOrders = async () => {
     try {
       const response = await axios.get(
         `https://fair-blue-cod-cape.cyclic.app/api/orders`,
@@ -29,11 +33,13 @@ const Orders = () => {
           },
         }
       );
-      return response.data;
+      setData(response.data);
+      setIsLoading(false);
     } catch (error) {
+      setError(true);
       throw new Error(error.message);
     }
-  });
+  };
 
   const handleContact = async (order) => {
     const sellerId = order.sellerId;
@@ -69,8 +75,10 @@ const Orders = () => {
     }
   };
 
+  useEffect(() => {
+    getOrders();
+  }, []);
   return (
-
     <Flex textAlign="center" color="#555">
       {isLoading ? (
         "loading"

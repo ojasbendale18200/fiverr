@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import "./GigCard.scss";
 import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import {
   Box,
   Flex,
@@ -14,20 +14,28 @@ import {
 import axios from "axios";
 
 const GigCard = ({ item }) => {
-  const { isLoading, error, data } = useQuery(`${item.userId}`, async () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const getGig = async () => {
     try {
       const response = await axios.get(
         `https://fair-blue-cod-cape.cyclic.app/api/users/${item.userId}`
       );
-      return response.data;
+      setData(response.data);
+      setIsLoading(false);
     } catch (error) {
+      setError(true);
       throw new Error(error.message);
     }
-  });
+  };
+
+  useEffect(() => {
+    getGig();
+  }, []);
 
   return (
     <Link to={`/gig/${item._id}`} className="link">
-   
       <Box
         width="335px"
         height="550px"
