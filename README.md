@@ -39,15 +39,22 @@ npm install
 4. Set up the environment variables:
    - Create a `.env` file in the root directory.
    - Add the following variables to the `.env` file:
+   - 
+5 Environment Variables
 
-5. Make Changes in your env file
+The following environment variables are required to run the project. Make sure to set them up before starting the application:
 
-    -PORT=3000
-    -DB_CONNECTION=<your_mongodb_connection_string>
-    -JWT_SECRET=<your_jwt_secret_key>
-     STRIPE_API_KEY=<your_stripe_api_key>
+- `PORT`: The port number on which the server will run. Set it to `3000` or any other available port.
 
-5. Start the server:
+- `DB_CONNECTION`: The MongoDB connection string. Replace `<your_mongodb_connection_string>` with your actual MongoDB connection string.
+
+- `JWT_SECRET`: The secret key used for JSON Web Token (JWT) encryption. Replace `<your_jwt_secret_key>` with your desired secret key.
+
+- `STRIPE_API_KEY`: The API key for the Stripe payment integration. Replace `<your_stripe_api_key>` with your actual Stripe API key.
+
+You can set these environment variables by creating a `.env` file in the root directory of the project and assigning the values as shown above.
+
+6. Start the server:
 ```bash
 npm run server
 ```
