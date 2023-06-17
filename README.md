@@ -40,19 +40,20 @@ npm install
    - Create a `.env` file in the root directory.
    - Add the following variables to the `.env` file:
 
+5. Make Changes in your env file
 
--PORT=3000
--DB_CONNECTION=<your_mongodb_connection_string>
--JWT_SECRET=<your_jwt_secret_key>
--STRIPE_API_KEY=<your_stripe_api_key>
+    -PORT=3000
+    -DB_CONNECTION=<your_mongodb_connection_string>
+    -JWT_SECRET=<your_jwt_secret_key>
+     STRIPE_API_KEY=<your_stripe_api_key>
 
-4. Start the server:
+5. Start the server:
 ```bash
 npm run server
 ```
 
 
-6. Start React Application
+7. Start React Application
 ```bash
 npm start
 ```
