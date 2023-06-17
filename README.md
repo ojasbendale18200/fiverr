@@ -1,6 +1,6 @@
 # Fiverr Project
 
-This repository contains the code for my project on Fiverr.
+Check out the live demo of the project [here](https://fiverr-1cfm.vercel.app/).
 
 ## Overview
 
