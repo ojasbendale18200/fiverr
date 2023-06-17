@@ -75,7 +75,7 @@ function Navbar() {
               fontWeight="bold"
               color={active || pathname !== "/" ? "black" : "white"}
             >
-              liverr
+              Fiverr
             </Text>
           </Link>
           <Text as="span" className="dot" fontWeight="bold" color="#1dbf73">
@@ -88,14 +88,27 @@ function Navbar() {
           gap="24px"
           fontFamily="Montserrat"
           fontWeight="500"
+          cursor={"pointer"}
         >
-          <Text as="span" whiteSpace="nowrap">
+          <Text
+            as="span"
+            whiteSpace="nowrap"
+            display={{ base: "none", md: "block" }}
+          >
             Liverr Business
           </Text>
-          <Text as="span" whiteSpace="nowrap">
+          <Text
+            as="span"
+            whiteSpace="nowrap"
+            display={{ base: "none", md: "block" }}
+          >
             Explore
           </Text>
-          <Text as="span" whiteSpace="nowrap">
+          <Text
+            as="span"
+            whiteSpace="nowrap"
+            display={{ base: "none", md: "block" }}
+          >
             English
           </Text>
           {!currentUser?.isSeller && <Text as="span">Become a Seller</Text>}

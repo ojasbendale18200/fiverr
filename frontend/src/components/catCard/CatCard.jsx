@@ -1,7 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link, Box, Text, Image } from "@chakra-ui/react";
-// import "./CatCard.scss";
 
 function CatCard({ card }) {
   return (

@@ -520,7 +520,7 @@ function Home() {
           </Box>
         </Flex>
       </Box>
-      <Box py={"40px"}>
+      <Box pt={"40px"} pb={"120px"}>
         <Slider
           slidesToShow={5}
           slidesToScroll={1}

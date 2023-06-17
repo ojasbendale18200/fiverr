@@ -13,6 +13,7 @@ import {
 // import "./Message.scss";
 
 import axios from "axios";
+import MessageLoading from "../../components/MessageLoading";
 
 const Message = () => {
   const { id } = useParams();
@@ -82,7 +83,7 @@ const Message = () => {
           <Link to="/messages">Messages</Link> > {currentUser.username} &gt;
         </Text>
         {isLoading ? (
-          "loading"
+          <MessageLoading />
         ) : error ? (
           "error"
         ) : (

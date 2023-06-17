@@ -77,6 +77,7 @@ function Login() {
               type="text"
               placeholder="johndoe"
               onChange={(e) => setUsername(e.target.value)}
+              isRequired
             />
           </FormControl>
 
@@ -89,6 +90,7 @@ function Login() {
               name="password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              isRequired
             />
           </FormControl>
 

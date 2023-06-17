@@ -18,6 +18,7 @@ import {
   GridItem,
   Divider,
 } from "@chakra-ui/react";
+import Loading from "../../components/Loading";
 
 function Gig() {
   const { id } = useParams();
@@ -26,33 +27,6 @@ function Gig() {
   const [data, setData] = useState(null);
   const [userData, setUserData] = useState(null);
 
-  // const getSingleGig = async () => {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await axios.get(
-  //       `https://fair-blue-cod-cape.cyclic.app/api/gigs/single/${id}`
-  //     );
-  //     setData(response.data);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     setError(true);
-  //     throw new Error(error.message);
-  //   }
-  // };
-
-  // const getUsers = async () => {
-  //   setIsLoadingUser(true);
-  //   try {
-  //     const response = await axios.get(
-  //       `https://fair-blue-cod-cape.cyclic.app/api/users/${data.userId}`
-  //     );
-  //     setUserData(response.data);
-  //     setIsLoadingUser(false);
-  //   } catch (error) {
-  //     setIsError(true);
-  //     throw new Error(error.message);
-  //   }
-  // };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -78,7 +52,7 @@ function Gig() {
   return (
     <Box maxW="1400px" mx="auto" p="30px 0px">
       {isLoading ? (
-        "loading"
+        <Loading />
       ) : Error ? (
         "Something went wrong!"
       ) : (

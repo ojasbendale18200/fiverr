@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
 import axios from "axios";
+import Loading from "../../components/Loading";
 
 import { useLocation } from "react-router-dom";
 
@@ -111,7 +112,6 @@ function Gigs() {
                 />
               </MenuButton>
               <MenuList>
-                {/* Display dynamic menu options here */}
                 <MenuItem onClick={() => reSort("createdAt")}>Newest</MenuItem>
 
                 <MenuItem onClick={() => reSort("sales")}>Popular</MenuItem>
@@ -124,11 +124,13 @@ function Gigs() {
           margin={"auto"}
           gap={5}
         >
-          {loading
-            ? "loading"
-            : error
-            ? "Something went wrong!"
-            : data?.map((gig) => <GigCard key={gig._id} item={gig} />)}
+          {loading ? (
+            <Loading />
+          ) : error ? (
+            "Something went wrong!"
+          ) : (
+            data?.map((gig) => <GigCard key={gig._id} item={gig} />)
+          )}
         </Grid>
       </Flex>
     </Box>

@@ -90,6 +90,7 @@ function Register() {
                 type="text"
                 placeholder="johndoe"
                 onChange={handleChange}
+                isRequired
               />
             </FormControl>
             <FormControl>
@@ -101,13 +102,19 @@ function Register() {
                 type="email"
                 placeholder="email"
                 onChange={handleChange}
+                isRequired
               />
             </FormControl>
             <FormControl>
               <FormLabel color="gray" fontSize="18px">
                 Password
               </FormLabel>
-              <Input name="password" type="password" onChange={handleChange} />
+              <Input
+                name="password"
+                type="password"
+                onChange={handleChange}
+                isRequired
+              />
             </FormControl>
             <FormControl>
               <FormLabel color="gray" fontSize="18px">
@@ -124,6 +131,7 @@ function Register() {
                 type="text"
                 placeholder="Usa"
                 onChange={handleChange}
+                isRequired
               />
             </FormControl>
             <Button

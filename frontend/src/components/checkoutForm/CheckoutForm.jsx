@@ -84,11 +84,15 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <Heading textAlign={"center"} mt={"50px"}>
+      <Heading textAlign={"center"} mt={"50px"} color={"gray.500"}>
         Pay with Card
       </Heading>
-      <form id="payment-form" onSubmit={handleSubmit}>
-        <Box w={"20%"} margin={"auto"} mt={"130px"}>
+      <form
+        id="payment-form"
+        onSubmit={handleSubmit}
+        style={{ marginBottom: "100px" }}
+      >
+        <Box w={"20%"} margin={"auto"} mt={"60px"}>
           <Flex flexDirection="column" gap="1rem">
             {/* <LinkAuthenticationElement
               id="link-authentication-element"

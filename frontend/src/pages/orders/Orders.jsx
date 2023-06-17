@@ -4,6 +4,7 @@ import {
   Box,
   Flex,
   Image,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -15,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 
 import axios from "axios";
+import Loading from "../../components/Loading";
 
 const Orders = () => {
   const navigate = useNavigate();
@@ -81,7 +83,15 @@ const Orders = () => {
   return (
     <Flex textAlign="center" color="#555">
       {isLoading ? (
-        "loading"
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+          margin={"auto"}
+          my={"60px"}
+        />
       ) : error ? (
         "error"
       ) : (

@@ -11,9 +11,11 @@ import {
   Tr,
   Th,
   Td,
+  Spinner,
 } from "@chakra-ui/react";
 import axios from "axios";
 import moment from "moment";
+import { CheckIcon } from "@chakra-ui/icons";
 
 const Messages = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -84,9 +86,22 @@ const Messages = () => {
   }, [currentUser.isSeller, data]);
 
   return (
-    <Box className="messages" display="flex" justifyContent="center">
+    <Box
+      className="messages"
+      display="flex"
+      justifyContent="center"
+      mb={"60px"}
+    >
       {isLoading ? (
-        "loading"
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+          margin={"auto"}
+          my={"60px"}
+        />
       ) : error ? (
         "error"
       ) : (
@@ -101,7 +116,7 @@ const Messages = () => {
             justifyContent="space-between"
             mb="20px"
           >
-            <Heading as="h1" fontSize="xl">
+            <Heading as="h1" fontSize="xl" margin={"auto"} color={"gray.500"}>
               Messages
             </Heading>
           </Box>
@@ -136,8 +151,8 @@ const Messages = () => {
                   </Td>
                   <Td color="gray">{moment(c.updatedAt).fromNow()}</Td>
                   <Td>
-                    {((currentUser.isSeller && !c.readBySeller) ||
-                      (!currentUser.isSeller && !c.readByBuyer)) && (
+                    {(currentUser.isSeller && !c.readBySeller) ||
+                    (!currentUser.isSeller && !c.readByBuyer) ? (
                       <Button
                         onClick={() => handleRead(c.id)}
                         colorScheme="green"
@@ -145,6 +160,8 @@ const Messages = () => {
                       >
                         Mark as Read
                       </Button>
+                    ) : (
+                      <CheckIcon color={"teal"} />
                     )}
                   </Td>
                 </Tr>

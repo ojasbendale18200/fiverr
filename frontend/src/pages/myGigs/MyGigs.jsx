@@ -7,6 +7,7 @@ import {
   Button,
   Flex,
   Image,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -15,6 +16,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import Loading from "../../components/Loading";
 
 function MyGigs() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -60,7 +62,15 @@ function MyGigs() {
   return (
     <Flex justifyContent="center" color="#555">
       {isLoading ? (
-        "loading"
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+          margin={"auto"}
+          my={"60px"}
+        />
       ) : error ? (
         "error"
       ) : (

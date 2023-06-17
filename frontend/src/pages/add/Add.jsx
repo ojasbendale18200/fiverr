@@ -1,6 +1,23 @@
 import React, { useReducer, useState } from "react";
-import "./Add.scss";
+// import "./Add.scss";
 import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
+import {
+  Box,
+  Container,
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Select,
+  Button,
+  VStack,
+  IconButton,
+  Flex,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import upload from "../../utils/upload";
 
 import { useNavigate } from "react-router-dom";
@@ -64,105 +81,269 @@ const Add = () => {
   };
 
   return (
-    <div className="add">
-      <div className="container">
-        <h1>Add New Gig</h1>
-        <div className="sections">
-          <div className="info">
-            <label htmlFor="">Title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="e.g. I will do something I'm really good at"
-              onChange={handleChange}
-            />
-            <label htmlFor="">Category</label>
-            <select name="cat" id="cat" onChange={handleChange}>
-              <option value="design">Design</option>
-              <option value="web">Web Development</option>
-              <option value="animation">Animation</option>
-              <option value="music">Music</option>
-              <option value="video & animation">Video & Animation</option>
-            </select>
-            <div className="images">
-              <div className="imagesInputs">
-                <label htmlFor="">Cover Image</label>
-                <input
-                  type="file"
-                  onChange={(e) => setSingleFile(e.target.files[0])}
-                />
-                <label htmlFor="">Upload Images</label>
-                <input
-                  type="file"
-                  multiple
-                  onChange={(e) => setFiles(e.target.files)}
-                />
-              </div>
-              <button onClick={handleUpload}>
-                {uploading ? "uploading" : "Upload"}
-              </button>
-            </div>
-            <label htmlFor="">Description</label>
-            <textarea
-              name="desc"
-              id=""
-              placeholder="Brief descriptions to introduce your service to customers"
-              cols="0"
-              rows="16"
-              onChange={handleChange}
-            ></textarea>
-            <button onClick={handleSubmit}>Create</button>
-          </div>
-          <div className="details">
-            <label htmlFor="">Service Title</label>
-            <input
-              type="text"
-              name="shortTitle"
-              placeholder="e.g. One-page web design"
-              onChange={handleChange}
-            />
-            <label htmlFor="">Short Description</label>
-            <textarea
-              name="shortDesc"
-              onChange={handleChange}
-              id=""
-              placeholder="Short description of your service"
-              cols="30"
-              rows="10"
-            ></textarea>
-            <label htmlFor="">Delivery Time (e.g. 3 days)</label>
-            <input type="number" name="deliveryTime" onChange={handleChange} />
-            <label htmlFor="">Revision Number</label>
-            <input
-              type="number"
-              name="revisionNumber"
-              onChange={handleChange}
-            />
-            <label htmlFor="">Add Features</label>
-            <form action="" className="add" onSubmit={handleFeature}>
-              <input type="text" placeholder="e.g. page design" />
-              <button type="submit">add</button>
-            </form>
-            <div className="addedFeatures">
+    // <div className="add">
+    //   <div className="container">
+    //     <h1>Add New Gig</h1>
+    //     <div className="sections">
+    //       <div className="info">
+    //         <label htmlFor="">Title</label>
+    //         <input
+    //           type="text"
+    //           name="title"
+    //           placeholder="e.g. I will do something I'm really good at"
+    //           onChange={handleChange}
+    //         />
+    //         <label htmlFor="">Category</label>
+    //         <select name="cat" id="cat" onChange={handleChange}>
+    //           <option value="design">Design</option>
+    //           <option value="web">Web Development</option>
+    //           <option value="animation">Animation</option>
+    //           <option value="music">Music</option>
+    //           <option value="video & animation">Video & Animation</option>
+    //         </select>
+    //         <div className="images">
+    //           <div className="imagesInputs">
+    //             <label htmlFor="">Cover Image</label>
+    //             <input
+    //               type="file"
+    //               onChange={(e) => setSingleFile(e.target.files[0])}
+    //             />
+    //             <label htmlFor="">Upload Images</label>
+    //             <input
+    //               type="file"
+    //               multiple
+    //               onChange={(e) => setFiles(e.target.files)}
+    //             />
+    //           </div>
+    //           <button onClick={handleUpload}>
+    //             {uploading ? "uploading" : "Upload"}
+    //           </button>
+    //         </div>
+    //         <label htmlFor="">Description</label>
+    //         <textarea
+    //           name="desc"
+    //           id=""
+    //           placeholder="Brief descriptions to introduce your service to customers"
+    //           cols="0"
+    //           rows="16"
+    //           onChange={handleChange}
+    //         ></textarea>
+    //         <button onClick={handleSubmit}>Create</button>
+    //       </div>
+    //       <div className="details">
+    //         <label htmlFor="">Service Title</label>
+    //         <input
+    //           type="text"
+    //           name="shortTitle"
+    //           placeholder="e.g. One-page web design"
+    //           onChange={handleChange}
+    //         />
+    //         <label htmlFor="">Short Description</label>
+    //         <textarea
+    //           name="shortDesc"
+    //           onChange={handleChange}
+    //           id=""
+    //           placeholder="Short description of your service"
+    //           cols="30"
+    //           rows="10"
+    //         ></textarea>
+    //         <label htmlFor="">Delivery Time (e.g. 3 days)</label>
+    //         <input type="number" name="deliveryTime" onChange={handleChange} />
+    //         <label htmlFor="">Revision Number</label>
+    //         <input
+    //           type="number"
+    //           name="revisionNumber"
+    //           onChange={handleChange}
+    //         />
+    //         <label htmlFor="">Add Features</label>
+    //         <form action="" className="add" onSubmit={handleFeature}>
+    //           <input type="text" placeholder="e.g. page design" />
+    //           <button type="submit">add</button>
+    //         </form>
+    //         <div className="addedFeatures">
+    //           {state?.features?.map((f) => (
+    //             <div className="item" key={f}>
+    //               <button
+    //                 onClick={() =>
+    //                   dispatch({ type: "REMOVE_FEATURE", payload: f })
+    //                 }
+    //               >
+    //                 {f}
+    //                 <span>X</span>
+    //               </button>
+    //             </div>
+    //           ))}
+    //         </div>
+    //         <label htmlFor="">Price</label>
+    //         <input type="number" onChange={handleChange} name="price" />
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    <Flex justify="center" w={"100%"} mb={"80px"}>
+      <Box w="80%" py={10} px={4}>
+        <Heading as="h1" mb={6} color="gray.500" fontWeight={300}>
+          Add New Gig
+        </Heading>
+        <Flex direction={{ base: "column", lg: "row" }} gap={20}>
+          <Box flex={1}>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="title" color="gray.500">
+                Title
+              </FormLabel>
+              <Input
+                type="text"
+                id="title"
+                placeholder="e.g. I will do something I'm really good at"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="cat" color="gray.500">
+                Category
+              </FormLabel>
+              <Select id="cat" onChange={handleChange}>
+                <option value="design">Design</option>
+                <option value="web">Web Development</option>
+                <option value="animation">Animation</option>
+                <option value="music">Music</option>
+                <option value="video & animation">Video & Animation</option>
+              </Select>
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="coverImage" color="gray.500">
+                Cover Image
+              </FormLabel>
+              <Input
+                type="file"
+                id="coverImage"
+                onChange={(e) => setSingleFile(e.target.files[0])}
+              />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="uploadImages" color="gray.500">
+                Upload Images
+              </FormLabel>
+              <Input
+                type="file"
+                id="uploadImages"
+                multiple
+                onChange={(e) => setFiles(e.target.files)}
+              />
+            </FormControl>
+            <Button
+              onClick={handleUpload}
+              colorScheme="teal"
+              margin={"auto"}
+              display={"block"}
+            >
+              {uploading ? "uploading" : "Upload"}
+            </Button>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="desc" color="gray.500">
+                Description
+              </FormLabel>
+              <Textarea
+                id="desc"
+                placeholder="Brief descriptions to introduce your service to customers"
+                rows={6}
+                onChange={handleChange}
+              />
+            </FormControl>
+          </Box>
+          <Box flex={1}>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="shortTitle" color="gray.500">
+                Service Title
+              </FormLabel>
+              <Input
+                type="text"
+                id="shortTitle"
+                placeholder="e.g. One-page web design"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="shortDesc" color="gray.500">
+                Short Description
+              </FormLabel>
+              <Textarea
+                id="shortDesc"
+                placeholder="Short description of your service"
+                rows={4}
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="deliveryTime" color="gray.500">
+                Delivery Time (e.g. 3 days)
+              </FormLabel>
+              <Input type="number" id="deliveryTime" onChange={handleChange} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="revisionNumber" color="gray.500">
+                Revision Number
+              </FormLabel>
+              <Input
+                type="number"
+                id="revisionNumber"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="feature" color="gray.500">
+                Add Features
+              </FormLabel>
+              <form onSubmit={handleFeature}>
+                <Flex>
+                  <Input
+                    type="text"
+                    id="feature"
+                    placeholder="e.g. page design"
+                  />
+                  <Button type="submit" ml={2} colorScheme="teal">
+                    Add
+                  </Button>
+                </Flex>
+              </form>
+            </FormControl>
+            <Stack spacing={2} direction="row" mb={4}>
               {state?.features?.map((f) => (
-                <div className="item" key={f}>
-                  <button
+                <Box key={f}>
+                  <Button
+                    size="sm"
+                    color="teal"
+                    variant="outline"
                     onClick={() =>
                       dispatch({ type: "REMOVE_FEATURE", payload: f })
                     }
                   >
                     {f}
-                    <span>X</span>
-                  </button>
-                </div>
+                    <Text pl={"6px"}>X</Text>
+                  </Button>
+                </Box>
               ))}
-            </div>
-            <label htmlFor="">Price</label>
-            <input type="number" onChange={handleChange} name="price" />
-          </div>
-        </div>
-      </div>
-    </div>
+            </Stack>
+            <FormControl mb={4}>
+              <FormLabel htmlFor="price" color="gray.500">
+                Price
+              </FormLabel>
+              <Input type="number" id="price" onChange={handleChange} />
+            </FormControl>
+          </Box>
+        </Flex>
+        <Button
+          colorScheme="teal"
+          onClick={handleSubmit}
+          my={4}
+          px={"80px"}
+          display={"block"}
+          margin={"auto"}
+        >
+          Create
+        </Button>
+      </Box>
+    </Flex>
   );
 };
 
