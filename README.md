@@ -53,5 +53,7 @@ npm start
 
 ## ScreenShots
 
+![homepage](https://github.com/ojasbendale18200/fiverr/assets/78263538/817c7f2c-a2fc-439a-a780-dace509b69b4)
+
 
 
