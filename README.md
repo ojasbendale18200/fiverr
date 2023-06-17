@@ -41,10 +41,10 @@ npm install
    - Add the following variables to the `.env` file:
 
 
-PORT=3000
-DB_CONNECTION=<your_mongodb_connection_string>
-JWT_SECRET=<your_jwt_secret_key>
-STRIPE_API_KEY=<your_stripe_api_key>
+-PORT=3000
+-DB_CONNECTION=<your_mongodb_connection_string>
+-JWT_SECRET=<your_jwt_secret_key>
+-STRIPE_API_KEY=<your_stripe_api_key>
 
 4. Start the server:
 ```bash
