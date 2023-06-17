@@ -31,10 +31,12 @@ The goal of this project is to develop a platform that connects freelancers with
 git clone https://github.com/ojasbendale18200/fiverr.git
 
 2. Install the dependencies:
+```bash
 cd fiverr
 npm install
+````
 
-3. Set up the environment variables:
+4. Set up the environment variables:
    - Create a `.env` file in the root directory.
    - Add the following variables to the `.env` file:
 
@@ -45,11 +47,15 @@ JWT_SECRET=<your_jwt_secret_key>
 STRIPE_API_KEY=<your_stripe_api_key>
 
 4. Start the server:
+```bash
 npm run server
+```
 
 
-5. Start React Application
+6. Start React Application
+```bash
 npm start
+```
 
 ## ScreenShots
 
