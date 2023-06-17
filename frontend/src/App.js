@@ -17,6 +17,7 @@ import MyGigs from "./pages/myGigs/MyGigs";
 
 import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
+import ReqAuth from "./Hoc/ReqAuth";
 
 function App() {
   return (
@@ -30,7 +31,14 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/message/:id" element={<Message />} />
         <Route path="/add" element={<Add />} />
-        <Route path="/gig/:id" element={<Gig />} />
+        <Route
+          path="/gig/:id"
+          element={
+            <ReqAuth>
+              <Gig />
+            </ReqAuth>
+          }
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pay/:id" element={<Pay />} />

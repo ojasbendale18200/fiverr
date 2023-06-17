@@ -27,7 +27,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await axios.post("https://fair-blue-cod-cape.cyclic.app/api/auth/logout");
-      localStorage.setItem("currentUser", null);
+      localStorage.removeItem("currentUser");
       removeCookie("accessToken");
       navigate("/");
     } catch (error) {

@@ -19,6 +19,7 @@ import {
   MenuItem,
   Grid,
   useBreakpointValue,
+  Spinner,
 } from "@chakra-ui/react";
 
 function Gigs() {
@@ -68,7 +69,7 @@ function Gigs() {
           fontSize="13px"
           color="#555"
         >
-          Liverr > Graphics & Design >
+          Liverr > Design >
         </Text>
         <Text as="h1"></Text>
         <Text color="#999" fontWeight="300">
@@ -125,7 +126,15 @@ function Gigs() {
           gap={5}
         >
           {loading ? (
-            <Loading />
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+              margin={"auto"}
+              my={"60px"}
+            />
           ) : error ? (
             "Something went wrong!"
           ) : (

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SingleReview from "../review/SingleReview";
 import { useCookies } from "react-cookie";
+import { useToast } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -18,10 +19,12 @@ import {
 } from "@chakra-ui/react";
 
 function Reviews({ gigId }) {
+  const toast = useToast();
   // const [cookies, setCookie] = useCookies(["accessToken"]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
+  const [reviewErr, setReviewErr] = useState(null);
   const accessToken = JSON.parse(localStorage.getItem("currentUser"));
 
   const getReviews = async () => {
@@ -54,8 +57,17 @@ function Reviews({ gigId }) {
           },
         }
       );
+
       getReviews();
     } catch (error) {
+      setReviewErr(error.response.data);
+      toast({
+        title: "Error",
+        description: `${reviewErr}`,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
       console.log(error);
     }
   };
