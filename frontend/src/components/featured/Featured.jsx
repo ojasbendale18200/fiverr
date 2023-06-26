@@ -59,6 +59,7 @@ function Featured() {
                   outline="none"
                   _placeholder={{ color: "gray" }}
                   color={"black"}
+                  focusBorderColor="transparent"
                 />
               </Flex>
               <Button
