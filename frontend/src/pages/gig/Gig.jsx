@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "./Gig.scss";
 
-// import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

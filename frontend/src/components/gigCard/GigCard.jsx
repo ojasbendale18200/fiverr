@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import "./GigCard.scss";
 import { Link } from "react-router-dom";
 // import { useQuery } from "react-query";
 import {

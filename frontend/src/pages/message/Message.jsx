@@ -10,7 +10,7 @@ import {
   Textarea,
   Button,
 } from "@chakra-ui/react";
-// import "./Message.scss";
+
 
 import axios from "axios";
 import MessageLoading from "../../components/MessageLoading";

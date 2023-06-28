@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-// import "./Add.scss";
+
 import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 import {
   Box,

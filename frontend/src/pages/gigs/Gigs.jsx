@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-// import "./Gigs.scss";
+
 import GigCard from "../../components/gigCard/GigCard";
 import axios from "axios";
 import Loading from "../../components/Loading";
