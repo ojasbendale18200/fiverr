@@ -93,11 +93,15 @@ function Reviews({ gigId }) {
         <form onSubmit={handleSubmit}>
           <FormControl>
             <FormLabel htmlFor="opinion">Write your opinion</FormLabel>
-            <Input type="text" id="opinion" />
+            <Input
+              type="text"
+              id="opinion"
+              width={{ base: "70%", md: "initial" }}
+            />
           </FormControl>
           <FormControl
             display={"flex"}
-            justifyContent={"end"}
+            justifyContent={{ base: "center", md: "end" }}
             pt={"10px"}
             alignItems={"center"}
           >
@@ -110,7 +114,10 @@ function Reviews({ gigId }) {
               <option value={5}>5</option>
             </Select>
           </FormControl>
-          <Flex justifyContent={"end"}>
+          <Flex
+            justifyContent={{ base: "center", md: "end" }}
+            ml={{ base: "100px", md: "initial" }}
+          >
             <Button mt={4} colorScheme="teal" type="submit" px={"10"}>
               Send
             </Button>

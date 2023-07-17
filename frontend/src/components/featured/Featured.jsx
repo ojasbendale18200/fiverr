@@ -27,8 +27,10 @@ function Featured() {
       >
         <Box flex="1">
           <Heading
-            fontSize={{ base: "25px", md: "50px" }}
-            mb={{ base: "30px", md: "30px" }}
+            fontSize={{ base: "19px", md: "50px" }}
+            mt={{ base: "30px", md: "initial" }}
+            mb={{ base: "40px", md: "30px" }}
+            ml={{ base: "45px", md: "initial" }}
           >
             Find the perfect{" "}
             <Text as="span" fontStyle="italic" fontWeight="300">
@@ -40,7 +42,8 @@ function Featured() {
             bg="white"
             borderRadius="5px"
             overflow="hidden"
-            width={{ base: "90%", md: "80%" }}
+            width={{ base: "80%", md: "80%" }}
+            margin={{ base: "auto", md: "initial" }}
           >
             <Flex alignItems="center" justifyContent="space-between">
               <Flex alignItems="center" gap="10px">
@@ -79,7 +82,12 @@ function Featured() {
               </Button>
             </Flex>
           </Box>
-          <Flex alignItems="center" gap="10px" mt="20px">
+          <Flex
+            alignItems="center"
+            gap="10px"
+            mt="20px"
+            visibility={{ base: "hidden", md: "visible" }}
+          >
             <Text width="max-content" color="white">
               Popular:
             </Text>

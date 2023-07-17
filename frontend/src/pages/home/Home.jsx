@@ -118,7 +118,7 @@ function Home() {
         <Grid templateColumns={`repeat(${columnCount}, 1fr)`} gap={4}>
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "140px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -151,7 +151,7 @@ function Home() {
           </GridItem>
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "120px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -180,11 +180,11 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Digital Marketing</Text>
           </GridItem>
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -213,12 +213,12 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Writing & Translation</Text>
           </GridItem>
 
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "140px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -247,12 +247,12 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Video & Animation</Text>
           </GridItem>
 
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -281,12 +281,12 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Music & Audio</Text>
           </GridItem>
 
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -315,12 +315,12 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Programming & Tech</Text>
           </GridItem>
 
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -349,11 +349,11 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Business</Text>
           </GridItem>
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -382,11 +382,11 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Lifestyle</Text>
           </GridItem>
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -415,12 +415,12 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Data</Text>
           </GridItem>
 
           <GridItem
             className="item"
-            width="250px"
+            width={{ base: "150px", md: "250px" }}
             height="150px"
             display="flex"
             flexDirection="column"
@@ -449,7 +449,7 @@ function Home() {
               transition="all .3s ease"
               className="line"
             ></Box>
-            <Text fontWeight={"300"}>Graphics & Design</Text>
+            <Text fontWeight={"300"}>Photography</Text>
           </GridItem>
         </Grid>
       </Box>
@@ -468,7 +468,7 @@ function Home() {
             <Heading color={"white"}>
               liverr <i>business</i>
             </Heading>
-            <Heading color={"white"} mb="15px">
+            <Heading ing color={"white"} mb="15px">
               A business solution designed for <i>teams</i>
             </Heading>
             <Text color={"white"} mb="20px">
@@ -477,19 +477,37 @@ function Home() {
             </Text>
             <Flex flexDirection="column" gap="20px">
               <Flex align="center">
-                <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
+                <Image
+                  src="./img/check.png"
+                  alt=""
+                  boxSize="24px"
+                  mr="10px"
+                  mb={{ base: "15px", md: "initial" }}
+                />
                 <Text color={"white"}>
                   Connect to freelancers with proven business experience
                 </Text>
               </Flex>
               <Flex align="center">
-                <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
+                <Image
+                  src="./img/check.png"
+                  alt=""
+                  boxSize="24px"
+                  mr="10px"
+                  mb={{ base: "15px", md: "initial" }}
+                />
                 <Text color={"white"}>
                   Get matched with the perfect talent by a customer success
                 </Text>
               </Flex>
               <Flex align="center">
-                <Image src="./img/check.png" alt="" boxSize="24px" mr="10px" />
+                <Image
+                  src="./img/check.png"
+                  alt=""
+                  boxSize="24px"
+                  mr="10px"
+                  mb={{ base: "15px", md: "initial" }}
+                />
                 <Text color={"white"}>
                   Manage teamwork and boost productivity with one powerful
                 </Text>

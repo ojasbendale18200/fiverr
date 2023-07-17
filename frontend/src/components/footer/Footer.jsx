@@ -96,8 +96,12 @@ function Footer() {
           py={"30px"}
         >
           <Flex className="left" alignItems="center" gap="20px">
-            <Heading fontSize="16px">liverr</Heading>
-            <Text fontSize="13px" whiteSpace="nowrap">
+            <Heading fontSize="16px">Fiverr</Heading>
+            <Text
+              fontSize="13px"
+              whiteSpace="nowrap"
+              display={{ base: "none", md: "initial" }}
+            >
               © Liverr International Ltd. 2023
             </Text>
           </Flex>
@@ -109,15 +113,30 @@ function Footer() {
               <Image src="/img/pinterest.png" alt="" boxSize="24px" />
               <Image src="/img/instagram.png" alt="" boxSize="24px" />
             </Flex>
-            <Flex className="link" alignItems="center" gap="10px">
+            <Flex
+              className="link"
+              alignItems="center"
+              gap="10px"
+              display={{ base: "none", md: "initial" }}
+            >
               <Image src="/img/language.png" alt="" boxSize="24px" />
               <Text>English</Text>
             </Flex>
-            <Flex className="link" alignItems="center" gap="10px">
+            <Flex
+              className="link"
+              alignItems="center"
+              gap="10px"
+              display={{ base: "none", md: "initial" }}
+            >
               <Image src="/img/coin.png" alt="" boxSize="24px" />
               <Text>USD</Text>
             </Flex>
-            <Image src="/img/accessibility.png" alt="" boxSize="24px" />
+            <Image
+              src="/img/accessibility.png"
+              alt=""
+              boxSize="24px"
+              display={{ base: "none", md: "initial" }}
+            />
           </Flex>
         </Flex>
       </Box>

@@ -220,7 +220,12 @@ function Gig() {
             <Divider my={6} />
           </Box>
           <Box>
-            <Box border="1px solid lightgray" borderRadius="5px" p={4}>
+            <Box
+              border="1px solid lightgray"
+              borderRadius="5px"
+              p={4}
+              width={{ base: "80%", md: "initial" }}
+            >
               <Flex align="center" justify="space-between">
                 <Text fontWeight="500" fontSize="lg">
                   {data?.shortTitle}

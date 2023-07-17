@@ -69,13 +69,19 @@ function Gigs() {
           fontSize="13px"
           color="#555"
         >
-          Liverr > Design >
+          Fiverr > Design >
         </Text>
         <Text as="h1"></Text>
         <Text color="#999" fontWeight="300">
           Explore the boundaries of art and technology with Liverr's AI artists
         </Text>
-        <Flex align="center" justify="space-between" marginBottom="20px">
+        <Flex
+          align="center"
+          justify="space-between"
+          marginBottom="20px"
+          flexDirection={{ base: "column", md: "initial" }}
+          gap={{ base: "40px", md: "initial" }}
+        >
           <Flex align="center" gap="10px" color="#555" fontWeight="300">
             <Text>Budget</Text>
             <Input type="number" ref={minRef} placeholder="min" />
