@@ -35,7 +35,7 @@ function Login() {
       // setCookie("accessToken", res.data.token, { path: "/" });
       toast({
         title: "Login Successfull.",
-        description: "We've created your account for you.",
+        description: "Welcome to Fiverr",
         status: "success",
         duration: 3000,
         isClosable: true,

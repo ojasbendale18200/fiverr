@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import { useQuery } from "react-query";
+import "../gigCard/gigCard.css";
 import {
   Box,
   Flex,
@@ -11,6 +12,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import axios from "axios";
+
 
 const GigCard = ({ item }) => {
   const [data, setData] = useState([]);
@@ -40,6 +42,8 @@ const GigCard = ({ item }) => {
         height="550px"
         border="1px solid rgb(228, 228, 228)"
         marginBottom="40px"
+        transition="transform 0.2s ease-in-out"
+        className="hover-effect"
       >
         <Image
           src={item?.cover}

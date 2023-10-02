@@ -12,6 +12,7 @@ import {
   Switch,
   Text,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 
 function Register() {
@@ -25,7 +26,7 @@ function Register() {
     isSeller: false,
     desc: "",
   });
-
+  const toast = useToast();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -51,7 +52,14 @@ function Register() {
           img: url,
         }
       );
-      navigate("/");
+      toast({
+        title: "Register Successfull.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate("/login");
     } catch (err) {
       console.log(err);
     }
