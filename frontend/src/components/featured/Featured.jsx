@@ -1,15 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Box, Flex, Heading, Image, Input, Button, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Input,
+  Button,
+  Text,
+  List,
+  ListIcon,
+  ListItem,
+} from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 function Featured() {
   const [input, setInput] = useState("");
+  const [suggestion, setSuggetion] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     navigate(`/gigs?search=${input}`);
   };
+
+  useEffect(() => {
+    const debounce = (func, delay) => {
+      let timeoutId;
+      return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+      };
+    };
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://fair-blue-cod-cape.cyclic.app/api/gigs?search=${input}`
+        );
+        const data = await response.json();
+
+        setSuggetion(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const debouncedFetchData = debounce(fetchData, 1000);
+
+    if (input.trim() !== "") {
+      debouncedFetchData();
+    }
+
+    return () => {
+      clearTimeout(debouncedFetchData);
+    };
+  }, [input]);
+
   return (
     <Box
       height={{ base: "auto", md: "600px" }}
@@ -44,6 +91,7 @@ function Featured() {
             overflow="hidden"
             width={{ base: "80%", md: "80%" }}
             margin={{ base: "auto", md: "initial" }}
+            position={"relative"}
           >
             <Flex alignItems="center" justifyContent="space-between">
               <Flex alignItems="center" gap="10px">
@@ -66,6 +114,7 @@ function Featured() {
                 />
               </Flex>
               <Button
+                isDisabled
                 width="120px"
                 height="50px"
                 bg="#1dbf73"
@@ -82,6 +131,43 @@ function Featured() {
               </Button>
             </Flex>
           </Box>
+          {input && (
+            <Box
+              border="1px solid gray"
+              borderRadius="5px"
+              position="absolute"
+              // top="20px"
+              zIndex="999"
+              bgColor="white"
+              overflow="scroll"
+              w="37%"
+              maxH="400px"
+            >
+              <List spacing={6}>
+                {suggestion.map((item) => {
+                  return (
+                    <Link to={`/gig/${item._id}`}>
+                      <ListItem
+                        color="black"
+                        fontSize="lg"
+                        cursor="pointer"
+                        textAlign={"left"}
+                        pl="10px"
+                        pb={2}
+                        _hover={{
+                          textDecoration: "none",
+                          bg: "#D3D3D3",
+                        }}
+                      >
+                        <ListIcon as={BiSearchAlt2} />
+                        {item.title}
+                      </ListItem>
+                    </Link>
+                  );
+                })}
+              </List>
+            </Box>
+          )}
           <Flex
             alignItems="center"
             gap="10px"

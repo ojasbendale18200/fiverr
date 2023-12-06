@@ -44,7 +44,7 @@ function Login() {
     } catch (err) {
       setError(err.response.data);
       toast({
-        title: `${error}`,
+        title: `${err.response.data}`,
         description: "Please Check You Email and Password",
         status: "error",
         duration: 3000,
